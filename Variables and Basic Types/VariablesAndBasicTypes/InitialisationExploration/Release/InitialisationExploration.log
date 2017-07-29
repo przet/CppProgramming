@@ -1,0 +1,11 @@
+﻿  InitialisationVsNonInitialisation.cpp
+InitialisationVsNonInitialisation.cpp(45): warning C4101: 'arr': unreferenced local variable
+InitialisationVsNonInitialisation.cpp(36): warning C4101: 'e': unreferenced local variable
+InitialisationVsNonInitialisation.cpp(37): warning C4101: 'f': unreferenced local variable
+InitialisationVsNonInitialisation.cpp(34): warning C4101: 'c': unreferenced local variable
+InitialisationVsNonInitialisation.cpp(38): warning C4101: 'g': unreferenced local variable
+InitialisationVsNonInitialisation.cpp(35): warning C4101: 'd': unreferenced local variable
+  Generating code
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(32): error C4700: uninitialized local variable 'i' used
+  All 161 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+LINK : fatal error LNK1257: code generation failed

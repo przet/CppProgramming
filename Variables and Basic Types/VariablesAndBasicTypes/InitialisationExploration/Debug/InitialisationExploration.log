@@ -1,0 +1,8 @@
+﻿  InitialisationVsNonInitialisation.cpp
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(45): warning C4101: 'arr': unreferenced local variable
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(36): warning C4101: 'e': unreferenced local variable
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(37): warning C4101: 'f': unreferenced local variable
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(34): warning C4101: 'c': unreferenced local variable
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(38): warning C4101: 'g': unreferenced local variable
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(35): warning C4101: 'd': unreferenced local variable
+n:\programming\c++\cppprogramming\variables and basic types\variablesandbasictypes\initialisationexploration\initialisationvsnoninitialisation.cpp(32): error C4700: uninitialized local variable 'i' used
