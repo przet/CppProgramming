@@ -2,21 +2,6 @@
 #include <Shellapi.h>
 //TODO: Include header guards?
 
-int main()
-{
-    RunBatch runBatch;
-    RunProgram runProgram;
-    //TODO. This feels or seems wrong, to have to instatiate like this...
-    runBatch.SetParamsAndRun(NULL, "open", "testBatch.bat",
-        NULL, "N:\\Programming\\C++\\CppProgramming\\Projects\\C++_ExeLauncher\\BatchFiles",
-        SW_NORMAL);
-    
-    runBatch.SetParamsAndRun(NULL, "open", "C++_ExeLauncher_VS.exe",
-        NULL, "N:\\Programming\\C++\\CppProgramming\\Projects\\C++_ExeLauncher\\C++_ExeLauncher_VS\\Debug",
-        SW_NORMAL);
-    
-
-}
 
 class ExecuteFile
 {
@@ -84,4 +69,19 @@ void RunProgram::SetParamsAndRun(_In_opt_ HWND hwndInput, _In_opt_ LPCTSTR
     nShowCmd = nShowCmdInput;
     ShellExecute(hwnd, lpOperation, lpFile, lpParameters,
         lpDirectory, nShowCmd);
+}
+int main()
+{
+    RunBatch runBatch;
+    RunProgram runProgram;
+    //TODO. This feels or seems wrong, to have to instatiate like this...
+    runBatch.SetParamsAndRun(NULL, "open", "testBatch.bat",
+        NULL, "N:\\Programming\\C++\\CppProgramming\\Projects\\C++_ExeLauncher\\BatchFiles",
+        SW_NORMAL);
+    
+    runBatch.SetParamsAndRun(NULL, "open", "notepad.exe",
+        NULL, "C:\\Windows",
+        SW_NORMAL);
+    
+
 }
