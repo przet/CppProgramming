@@ -1,5 +1,5 @@
-_______________________________________________________________________________________________________
-Batch File Location     | "N:\\Programming\\C++\\CppProgramming\\Projects\\C++_ExeLauncher\\BatchFiles"
-------------------------|------------------------------------------------------------------------------
-Executable Location	| "C:\\Windows\\notepad.exe"	
-_______________________________________________________________________________________________________			
+Batch File Location:
+N:\Programming\C++\CppProgramming\\Projects\C++_ExeLauncher\BatchFiles
+
+Executable Location:
+C:\Windows\notepad.exe	
