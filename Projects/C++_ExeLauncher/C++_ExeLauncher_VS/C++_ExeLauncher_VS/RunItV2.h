@@ -4,6 +4,11 @@
 
 #include <windows.h>
 #include <Shellapi.h>
+#include "DirectoryStringExtractor.cpp"
+
+//External Function Declarations
+std::vector<std::string> DirectoryStringExtractor(std::string const &);
+
 
 class ExecuteFile
 {
