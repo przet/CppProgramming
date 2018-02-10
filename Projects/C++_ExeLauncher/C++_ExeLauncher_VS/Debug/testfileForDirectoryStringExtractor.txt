@@ -1,0 +1,33 @@
+#DO NOT CHANGE THE FILE NAME OF THIS FILE#
+
+C:\Windows if this line appears that is good
+
+: I don't want this line to appear
+
+\ I don't want this line to appear
+
+:\ I DO want this line to appear
+
+C:/Windows This line should appear
+
+C:\\Windows this line should appear
+
+C:\Windows\temp this line should appear
+
+C:\\Windows\temp this line should appear
+
+C:\\Windows\\temp this line should appear
+
+C:\Windows\temp this line should appear
+
+This : line should not appear
+
+This \ line should not appear
+
+\: this line should not appear
+
+This :\ line will appear
+
+This : line \ should NOT appear
+
+C:\Windows/Temp This line should appear
