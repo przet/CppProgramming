@@ -30,3 +30,11 @@ and replace it with line 2 of the config file (yes, for v2.0.0 the config file m
 
 2)RunIt must then read in line 4 of the config file and replace whatever directory in currently set in RunIt to open mec, with this one.
 
+
+There is one glaring issue here, and that is the opening and reading of the batch file, and of the config file, and the other find a replace operations EACH time RunIt is run. And of course there is no persistent storage after it is run (or if we made some, like a another file, it willstill require opening and reading. But maybe this will not take that long... I would have to measure it. It could also leave to many points of failure. That is the benefit of having things hardcoded in this case - and relase cycle is not that long, that I can't change it when it needs to be; or I could just put this functionality back into the batch file (from which you can open programs also). Run it v1.0.0 is actually just a program to control the system, something which is probably better to do from the batch file (but of course, this started off, and still is, a fun play exercise in C++)
+
+Perhaps that is the way to go...just put it in a batch script and tweak Windows 7 to do the whole batch script on taskbar thing (and failing that I could just keep the exe - its not THAT hard to compile and tweak, and the code has made it clear where to make the changes...
+
+That is only to allow more time to spend on other work ideas, bigger things that are important too, and leave this still as great exercise (and something I will continue to do, for I have already learnt so much and it is a blast - I still have the GUI coming. And I do think it will be quite a nice little piece of C++ coding, with lots of things going on (over-engineered but on purpose so).)
+
+
