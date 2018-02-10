@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\RunItv2.cpp" />
+    <ClCompile Include="DirectoryStringExtractor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RunItV2.h" />
