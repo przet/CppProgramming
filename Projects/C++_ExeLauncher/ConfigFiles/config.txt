@@ -1,5 +1,12 @@
+
 Batch File Location:
 N:\Programming\C++\CppProgramming\\Projects\C++_ExeLauncher\BatchFiles
 
 Executable Location:
 C:\Windows\notepad.exe	
+
+
+#For RunIt v2.0.0 the structure of this file needs to be fixed; i.e the
+#only thing that can change is the directory. Future releases will aim to
+#allow a more unconstrained structure (if a gui to set locations does not come
+#first.
