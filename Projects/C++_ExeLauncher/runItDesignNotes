@@ -1,0 +1,40 @@
+Some RunIt design notes
+
+First of all we should remove from both CSub and runIt v1.0.0 the
+system call, and instead use shell execute. Make these changes in comet bitbucket (or maybe even the whole organisation one?). Would be good to do a bit of a clean up for that.
+
+This in the first instance should be v1.0.1
+
+For version 2:
+
+The main program needs to do two things:
+
+1)Execute a batch script. This batch script will usually have some filesystem level operations, copying files from one location to another.
+The destination location is a string that will need to change on new releases of comet.
+
+2)Execute mec,  after copying is done and user is satisfied. Would be good to also take control of the os, and open the dialog box to load a base scenario, however this may be dangerous or even unnessary - the running of the script and then opening of mec is the most useful part.
+
+This is relatively simple. 
+
+The more challenging part is what happens when comet moves to a release.
+Under the current version (v.1.0.0), both the batch script and the actual C++ program need to change where they point to. Changing the batch script is messy or unpleasant enough (for users who don't want to open up messy batch scripts); changing the program requries a recompilation.
+
+The solution proposed for RunIt v2 is for this behaviour to be changed dynamically, i.e at runtime, so that no recompilation step is necessary.
+
+The way this is being coded up so far is to have a text file so that the user can set the new mec directory there, and RunIt will take care of the rest.
+
+Two seperate things need to happen:
+
+1) The batch file must be read into RunIt; namely the line with "set MEC". We must then find the part in this line which starts "X:\" 
+and replace it with line 2 of the config file (yes, for v2.0.0 the config file must have a strictly adhered to layout. Future releases are looking at having a more unconstrained layout)
+
+2)RunIt must then read in line 4 of the config file and replace whatever directory in currently set in RunIt to open mec, with this one.
+
+
+There is one glaring issue here, and that is the opening and reading of the batch file, and of the config file, and the other find a replace operations EACH time RunIt is run. And of course there is no persistent storage after it is run (or if we made some, like a another file, it willstill require opening and reading. But maybe this will not take that long... I would have to measure it. It could also leave to many points of failure. That is the benefit of having things hardcoded in this case - and relase cycle is not that long, that I can't change it when it needs to be; or I could just put this functionality back into the batch file (from which you can open programs also). Run it v1.0.0 is actually just a program to control the system, something which is probably better to do from the batch file (but of course, this started off, and still is, a fun play exercise in C++)
+
+Perhaps that is the way to go...just put it in a batch script and tweak Windows 7 to do the whole batch script on taskbar thing (and failing that I could just keep the exe - its not THAT hard to compile and tweak, and the code has made it clear where to make the changes...
+
+That is only to allow more time to spend on other work ideas, bigger things that are important too, and leave this still as great exercise (and something I will continue to do, for I have already learnt so much and it is a blast - I still have the GUI coming. And I do think it will be quite a nice little piece of C++ coding, with lots of things going on (over-engineered but on purpose so).)
+
+
