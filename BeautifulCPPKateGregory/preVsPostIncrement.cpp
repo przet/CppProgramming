@@ -70,16 +70,28 @@ int main ()
    //
    // In fact the loop will loop forever with i = 0, as we can show (be prepared to ctrl-c the program:
    
+	/*
    twos = 0;
    for (int i = 0; i < v.size();)
        if (v[i] == target)
 	   {	twos++;
 			std::cout << i << std::endl;
 	   }
-
+     */
    //Hmmm is there a way to throw and catch for this? Well its not really an exception, its more a bug in the program...
 
-	
+   //An interesting thing came up when playing with iterators in "findingVariations.cpp" at the same dir level, and I 
+   
+   int arr[] = {1,2,3,4,5,6,7};
+   int *pa = arr;
+   std::cout << "This should be ?: " << *pa++++ << std::endl;
 
-	return 0;
+   //First, the p++++ resulted in a compile time error of 'expression not
+   //assignable', and pointing to the 3rd from left '+' sign. TODO: understand this:
+   //I think it might have something to do with post increment, but then why did pa++ work? AND
+   //why did this work with iterators in "findindVariations.cpp"...is it because iterators are not pointers (but I think a pointer is an iterator)
+   
+
+   
+
 }
