@@ -76,6 +76,15 @@ int main ()
 		//Finally, the const in the string argument just seems to be there for protection, like in
 		//any funciton argument; removing it doesn't change anything
 		
+		// Finally, some nice combining of accumlate and mixing objects (i.e object being ranged over
+		// is different to the third argument, or starting value, of the accumulation....although really,
+		// all we are doing is making an int a string, so its not _that_ special, but it does show you can
+		// be flexible when using accumulate
+		
+		auto mix = std::accumulate(begin(a), end(a), std::string{"The numbers are:"},
+						[](const std::string& total, int i) {return total + " " + std::to_string(i);});
+		std::cout << mix << std::endl;
+		
 		
 
 
