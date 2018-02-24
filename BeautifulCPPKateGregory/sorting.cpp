@@ -55,7 +55,7 @@ std::vector<MyClass> myClassVec{myclass2,myclass1};
 std::cout.setf(std::ios::boolalpha);
 for (auto elem : myClassVec)
 		std::cout << elem.getX()<< std::endl;
-std::sort(begin(myClassVec),end(myClassVec), [](auto elem1, auto elem2) {return elem1 < elem2;});
+std::sort(begin(myClassVec),end(myClassVec), [](auto elem1, auto elem2) {return elem1.getX() < elem2.getX();});
 for (auto elem : myClassVec)
 		std::cout << elem.getX()<< std::endl;
 
