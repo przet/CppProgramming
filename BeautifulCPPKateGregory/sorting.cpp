@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<algorithm>
+#include "sorting.hpp"
 
 int main()
 {
@@ -34,7 +35,7 @@ int main()
  
  //Note that resetting v2 was NOT required: the result is the same 
  std::cout <<std::endl;
- std::sort(begin(v2),end(v2), [](int elem1, int elem2) {return abs(elem1)>abs(elem2);});
+ std::sort(begin(v2),end(v2), [](auto elem1, auto elem2) {return abs(elem1)>abs(elem2);});
  for (auto elem : v2)
 		 std::cout << elem << ", ";
   
@@ -46,11 +47,21 @@ int main()
  for (auto elem : s)
 		 std::cout << elem;
  std::cout<<std::endl;
-		 
-
+ 
+MyClass myclass1, myclass2;
+myclass1.setX(4);
+myclass2.setX(6);
+std::vector<MyClass> myClassVec{myclass2,myclass1};
+std::cout.setf(std::ios::boolalpha);
+for (auto elem : myClassVec)
+		std::cout << elem.getX()<< std::endl;
+std::sort(begin(myClassVec),end(myClassVec), [](auto elem1, auto elem2) {return elem1 < elem2;});
+for (auto elem : myClassVec)
+		std::cout << elem.getX()<< std::endl;
 
 
 
 
 	return 0;
+
 }
