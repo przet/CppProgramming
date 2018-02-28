@@ -5,7 +5,10 @@
 int main ()
 {
     std::shared_ptr<MyClass> myclass(new MyClass);
-    myclass->get_a();
+    std::cout << myclass->get_a() << std::endl;
+    myclass->set_a(44);
+    std::cout << myclass->get_a() << std::endl;
+    
 
     return 0;
 }

@@ -1,8 +1,8 @@
 class MyClass
 {
     private:
-        int a;
-        double b;
+        int a = 0;
+        double b =0;
         
     public:
         int get_a();
