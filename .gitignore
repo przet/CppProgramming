@@ -14,3 +14,8 @@ N:/Programming/C++/CppProgramming/Projects/C++_ExeLauncher/C++_ExeLauncher_VS/.v
 *.pdb
 *.exe
 *.out
+.vs/
+.tlog
+.log
+.idb
+.obj
