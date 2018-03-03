@@ -4,3 +4,9 @@ N:/Programming/C++/CppProgramming/Projects/C++_ExeLauncher/C++_ExeLauncher_VS/.v
 *.un~
 *.un
 *.obj
+*.*~
+*.o
+*.lib
+*.so
+*.dll
+*.bin
