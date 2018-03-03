@@ -10,3 +10,7 @@ N:/Programming/C++/CppProgramming/Projects/C++_ExeLauncher/C++_ExeLauncher_VS/.v
 *.so
 *.dll
 *.bin
+*.ilk
+*.pdb
+*.exe
+*.out
