@@ -1,5 +1,0 @@
-﻿  StrStream_ParseInts.cpp
-n:\programming\c++\cppprogramming\hackerrank\hackerrankcpp_vs_sln\stringstreamparseints\strstream_parseints.cpp(13): warning C4101: 'b': unreferenced local variable
-n:\programming\c++\cppprogramming\hackerrank\hackerrankcpp_vs_sln\stringstreamparseints\strstream_parseints.cpp(13): warning C4101: 'c': unreferenced local variable
-  StringStreamParseInts.vcxproj -> N:\Programming\C++\CppProgramming\HackerRank\HackerRankCpp_vs_sln\Debug\StringStreamParseInts.exe
-  StringStreamParseInts.vcxproj -> N:\Programming\C++\CppProgramming\HackerRank\HackerRankCpp_vs_sln\Debug\StringStreamParseInts.pdb (Partial PDB)
