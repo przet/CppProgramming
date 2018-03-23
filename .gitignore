@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+*.bin
+
+#Temp files (vim)
+*.*~
+
+#Vs specific stuff
+*.ilk
+*.pdb
+*.sln
+
