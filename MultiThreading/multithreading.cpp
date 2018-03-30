@@ -43,7 +43,7 @@ struct MyFunctor2
 {
     void operator()()
     {
-        std::cout << "FUNCTOR 2 IS IN THE HOUSE...or rather a thread entry point" << std::endl;
+        std::cout << "*****FUNCTOR 2 IS IN THE HOUSE...or rather a thread entry point" << std::endl;
     }
 };
 
@@ -56,7 +56,7 @@ int main()
     MyClass myObject;
     std::thread thread3(&MyClass::func, &myObject);
     std::thread thread4(MyFunctor(), 4);//This works..but...MyFunctor2 will NOT..Also, '&' will NOT compile
-    std::thread thread4_a(MyFunctor2(), (void);//will compile but no call warning
+    std::thread thread4_a((MyFunctor2()));//will compile but no call warning
     
     std::thread thread5([]() {std::cout << "I have entry point via a lambda(which is just ss for a functor" << std::endl;});
     
