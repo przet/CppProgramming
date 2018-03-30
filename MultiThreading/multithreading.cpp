@@ -52,13 +52,20 @@ struct MyFunctor2
 int main()
 {
     std::thread thread(&func);// can be without '&' too
+    thread.detach();
     std::thread thread2(&func2, 5);
+    thread2.detach();
     MyClass myObject;
     std::thread thread3(&MyClass::func, &myObject);
+    thread3.detach();
     std::thread thread4(MyFunctor(), 4);//This works..but...MyFunctor2 will NOT..Also, '&' will NOT compile
+    thread4.detach();
     std::thread thread4_a((MyFunctor2()));
+    thread4_a.detach();
     
     std::thread thread5([]() {std::cout << "I have entry point via a lambda(which is just ss for a functor" << std::endl;});
+    thread5.detach();
+
     
 
 
