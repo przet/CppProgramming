@@ -72,6 +72,5 @@ int main()
     //main thread
     for (int i = 0; i < 10;++i)
         std::cout << "I am the main thread" << std::endl;
-    system("pause");
     return 0;
 }
