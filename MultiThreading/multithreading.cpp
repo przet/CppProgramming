@@ -47,6 +47,15 @@ struct MyFunctor2
     }
 };
 
+class ClassWithThread
+{
+public:
+    ClassWithThread() {};
+private:
+    void f() {}
+    std::thread thread6;
+};
+
 
 
 int main()
