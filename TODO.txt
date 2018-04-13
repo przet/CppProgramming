@@ -1,1 +1,36 @@
 Function overloading (can and can-not do's ) play with different parameter type, but same number of args (so foo(<T>), foo (<W>)
+
+
+Look at all the TODOs below:
+
+#include <algorithm>
+#include <iterator>
+#include <string>
+#include <iostream> //for on-screen debugging/testing
+//size_t duplicateCount(const std::string& in); // helper for tests
+
+//size_t duplicateCount(const char* in) //TODO come back to this (C-String? Is that what this is?) 
+size_t duplicateCount(const std::string& in)
+{
+   size_t count = 0;
+      //TODO: look into this error: lvalue casts are not supported (the issue is the static_cast)
+         auto it = std::find_if(begin(in), end(in), [](auto elem){return elem != ' ';}); //TODO : 
+            //cant do elem == " " as this is a char* look into this
+               //TODO: how does the empty case work? ("") ?? 
+                  while (it != end(in))
+                     {
+                        auto newIt = it;
+                           while (newIt != end(in))
+                              {
+                                     count = std::count_if((it+1), end(in),[it](auto elem){return elem == *it;});
+                                            ++newIt;
+                                               }
+                                                  ++it;
+                                                     }
+                                                        if (count > 0)
+                                                            return count;
+                                                               return 0;
+                                                                  //auto newIt = begin(in)-(it-2);
+                                                                     //TODO: At least in THIS context can't add iterators, but can subtract...
+                                                                            
+                                                                            }
