@@ -4,5 +4,5 @@ This repo contains all my C++ concept and topic explorations and explanations of
 
 More specifically:
 
-[STL and C++11 based on Kate Gregory's Pluralsight videos]:(https://github.com/przet/CppProgramming/tree/master/BeautifulCPPKateGregory)
+[STL and C++11 based on Kate Gregory's Pluralsight videos](https://github.com/przet/CppProgramming/tree/master/BeautifulCPPKateGregory/comparison.cpp)
 
