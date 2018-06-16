@@ -6,7 +6,7 @@ As a rule this repository does not have products, but rather single exploration 
 
 More specifically (although not exhaustive - I list out what I think are some cleaner folders, but the ones not listed can also be of interest)
 
-*[STL and C++11 based on Kate Gregory's Pluralsight videos](https://github.com/przet/CppProgramming/tree/master/BeautifulCPPKateGregory/)
+* [STL and C++11 based on Kate Gregory's Pluralsight videos](https://github.com/przet/CppProgramming/tree/master/BeautifulCPPKateGregory/)
 *[`const` references and pointers](https://github.com/przet/CppProgramming/tree/master/ConstRefAndCopying)
 *[CPPUnit set up code](https://github.com/przet/CppProgramming/tree/master/CppUnitSetUp)
 *[Design Patterns](https://github.com/przet/CppProgramming/tree/master/DesignPatterns)
