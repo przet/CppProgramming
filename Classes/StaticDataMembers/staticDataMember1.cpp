@@ -14,17 +14,14 @@ class Widget
 int Widget::count = 0; //Is this not zero always as a) it is global and b) it is static? Read Schaums,
 // he mentions it on the first page of this topic!
 
-// By the way I am pretty sure it is needed to specify count, as the constructor uses count straight away
-
 //Program
-int main()
+int main(int argc , char** argv)
 {
-	Widget x, w;
+	Widget w, x, y, z;
 	if (w.numWidgets() != 1) 
-			std::cout << "\nThere are " << w.numWidgets() << " widgets. \n\n";
+			std::cout << "\nThere are " << y.numWidgets() << " widgets. \n\n";
 	else
 			std::cout << "\nThere is " << w.numWidgets() << " widget. \n\n";
-
 
 }
 

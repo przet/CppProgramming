@@ -1,0 +1,11 @@
+I would Ideally like to make RunIt cross platform:
+
+The main (perhaps only) thing making RunIt platform specific is it's use of MS Windows APIs (in ShellExecute)
+
+To make RunIt cross platform, that would need to change.
+
+The following question(s) need to be answered:
+
+1) Boost has a platform independent "Shell execute" or "CreateProcess" process; What of C++17, would that include that now?
+
+
