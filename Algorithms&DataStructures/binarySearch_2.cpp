@@ -10,7 +10,7 @@ class Solution {
                         return right_index - left_index + 1 <= 3; 
                 }
                 int mid(int a, int b){
-                        return 1 + (abs(a-b)/2);
+                        return abs(a-b)/2;
                 }
                 
                 int searchInternal(std::vector<int> &nums,int target, int left_index, int right_index,int middle_index){
@@ -24,28 +24,14 @@ class Solution {
                         //For the moment putting in logic here.
 
                         right_index = middle_index;
-                        middle_index -= mid(right_index, left_index);
-                        if (middle_index > nums.size() - 1)
-                            middle_index -= 1;
-                        if (middle_index == left_index)
-                            middle_index++;
-                        if (middle_index == right_index)
-                            middle_index--;
+                        middle_index = mid(right_index, left_index) + left_index;
                         return searchInternal(nums, target, left_index, right_index, middle_index);
                     }
                     else if (target > nums[middle_index]) {
                         left_index = middle_index;
-                        middle_index += mid(right_index, left_index);
-                        if (middle_index > nums.size() - 1)
-                            middle_index -= 1;
-                        if (middle_index == left_index)
-                            middle_index++;
-                        if (middle_index == right_index)
-                            middle_index--;
+                        middle_index = mid(right_index, left_index) + left_index;
                         return searchInternal(nums, target, left_index, right_index, middle_index);
                     }
-                    else
-                        return -1;
                 }
                 else if (stop()) {
                         if (target == nums[middle_index])
@@ -77,7 +63,7 @@ class Solution {
 int main(){
         Solution solution;
         std::vector<int> nums{-1,0,3,5,9,12};
-        int target = 2;
+        int target = 1;
         std::cout << (solution.search(nums, target)) << std::endl;
         system("pause");
 }
