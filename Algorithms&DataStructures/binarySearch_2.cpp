@@ -6,7 +6,7 @@ class Solution {
         private:
                 int left_index, right_index, middle_index;
                 
-                bool stop(){
+                bool stop(int right_index, int left_index){
                         return right_index - left_index + 1 <= 3; 
                 }
                 int mid(int a, int b){
@@ -14,7 +14,7 @@ class Solution {
                 }
                 
                 int searchInternal(std::vector<int> &nums,int target, int left_index, int right_index,int middle_index){
-                if(!stop()){
+                if(!stop(right_index,left_index)){
                     if (target == nums[middle_index])
                         return middle_index;
 
@@ -33,16 +33,17 @@ class Solution {
                         return searchInternal(nums, target, left_index, right_index, middle_index);
                     }
                 }
-                else if (stop()) {
+                else {
                         if (target == nums[middle_index])
                             return middle_index;
-                        else if (target < nums[middle_index])
+                        else if (target == nums[left_index])
                             return left_index;
-                        else if (target > nums[middle_index])
+                        else if (target == nums[right_index])
                             return right_index;
                         else
                             return -1;
                 }
+                
                 }
 
                 //TODO: implement a functor object to call middle_index(val). Might have to but functor class
@@ -63,7 +64,7 @@ class Solution {
 int main(){
         Solution solution;
         std::vector<int> nums{-1,0,3,5,9,12};
-        int target = 1;
+        int target = 2;
         std::cout << (solution.search(nums, target)) << std::endl;
         system("pause");
 }
