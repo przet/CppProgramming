@@ -18,17 +18,17 @@ namespace binary_search
                 rightIndex = midIndex - 1;
             else
                 leftIndex = midIndex + 1;
-            //m = calcMid(r, l);
-            midIndex = leftIndex + (rightIndex - leftIndex) / 2;
+            midIndex= calcMidPoint(rightIndex, leftIndex);
+            //midIndex = leftIndex + (rightIndex - leftIndex) / 2;
         }
         return -1;
     }
     int Solution::search(std::vector<int> &nums, int targetInput) {
         leftIndex = 0;
         rightIndex = nums.size() - 1;
-        target = target;
-        // m = calcMid(r, l);
-        midIndex = leftIndex + (rightIndex - leftIndex) / 2;
+        target = targetInput;
+        midIndex= calcMidPoint(rightIndex, leftIndex);
+        //midIndex = leftIndex + (rightIndex - leftIndex) / 2;
         return search(nums);
     }
 }//namespace binary_search
