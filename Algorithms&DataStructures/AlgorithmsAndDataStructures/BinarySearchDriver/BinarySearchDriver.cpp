@@ -5,31 +5,26 @@
 #include <iostream>
 #include <vector>
 #include "../BinarySearch/BinarySearch.hpp"
+#include "../DriverInputData/SampleSpaceGenerator.hpp"
 #include <algorithm>
 #include <iostream>
 #include <chrono>
 #include <random> 
 int main()
 {
-    //input data TODO delegate to a lib
-    typedef std::vector<int> Vec;
-    typedef std::vector<std::vector<int>> VecOfVec;
-    const double sampleSize = 10;
-    VecOfVec sampleSpace(sampleSize);
-    
-    std::for_each(begin(sampleSpace), end(sampleSpace), [i = 1](auto& elem) mutable{elem.resize(i++);
-        std::generate(begin(elem), end(elem), [i = 0]() mutable{return i++; }); });
-    //----------------
 
+    sample_space::SampleSpaceGenerator SSG;
+    SSG.generator(100);
     binary_search::Solution soln;
+
     
-    for (auto vec : sampleSpace)
+    for (auto vec : SSG.table)
     {
 
         //----generate random target val
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<>dis(-sampleSize, sampleSize);
+        std::uniform_int_distribution<>dis(0, 10);
         auto targetVal = dis(gen);
         //-------
         auto startTime = std::chrono::high_resolution_clock::now();
