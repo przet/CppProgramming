@@ -46,7 +46,13 @@ namespace binary_search
         rightIndex = n;
         while (leftIndex <= rightIndex)
         {
-            midIndex = leftIndex +  (rightIndex - leftIndex) / 2;
+            //midIndex = leftIndex +  (rightIndex - leftIndex) / 2;
+            auto temp1 =  rightIndex - leftIndex;
+            auto temp2 =  rightIndex + leftIndex;
+            
+            //cast leftIndex + rightIndex (_not_ the division result) to size_t to expand storage size for
+            //this intermediated calculation (wrap around otherwise, resulting in slow/incomplete algo)
+            midIndex = (size_t)(leftIndex + rightIndex) / 2;
             if (guess(midIndex) == 0)
                 return midIndex;
             else if (guess(midIndex) == -1)

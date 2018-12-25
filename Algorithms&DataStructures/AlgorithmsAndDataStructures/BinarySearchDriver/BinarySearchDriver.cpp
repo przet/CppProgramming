@@ -35,13 +35,16 @@ int main()
         std::cout << "Input of size " << vec.size() << " has execution time of " << duration << " us" << " and result of search is " << result <<"\n";
     }
 
-    std::vector <int> bigVec(2126753390);
+    /*TODO: Test for big sizes (will complain)
+    std::vector <int> bigVec(/*bignumber here);
     std::generate(begin(bigVec), end(bigVec), [i = 0]()mutable{return i++; });
     auto startTime = std::chrono::high_resolution_clock::now();
     auto result = vanillaBinary.search(bigVec,1702766719);
     auto endTime = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
-    std::cout << duration << "\n";
+    std::cout << duration << "\n"; 
+    */
+
 
 
     binary_search::NumberHigherLower NHL(1702766719);
