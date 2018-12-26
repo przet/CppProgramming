@@ -16,7 +16,7 @@ int main()
 
     sample_space::SampleSpaceGenerator SSG;
     SSG.generator(100);
-    binary_search::Vanilla vanillaBinary;
+    binary_search::Vanilla<int> vanillaBinary;
 
     
     for (auto vec : SSG.table)

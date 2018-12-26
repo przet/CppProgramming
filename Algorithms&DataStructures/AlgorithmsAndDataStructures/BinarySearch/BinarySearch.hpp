@@ -2,19 +2,21 @@
 #define BINARY_SEARCH__H
 
 #include <vector>
+#include <memory> // std::allocator
 
 namespace binary_search
 {
+    template<typename T> 
     class Vanilla 
     {
     private:
-        int leftIndex, rightIndex, midIndex, target;
-        int calcMidPoint(int, int);
-        //TODO: Template
-        int search(std::vector<int>& nums);
+        T leftIndex, rightIndex, midIndex, target;
+        T calcMidPoint(T a, T b);
+        T search(std::vector<T>& nums);
     public:
-        int search(std::vector<int>& nums, int targetInput);
+        T search(std::vector<T>& nums, T targetInput);
     };
+    
 
     class NumberHigherLower
     {
@@ -27,5 +29,8 @@ namespace binary_search
         int guessNumber(int n);
     };
 }// namespace binary_search
+
+//Template Definitions-TODO make it a header file
+#include "BinarySearch.cpp"
 
 #endif // !BINARY_SEARCH__H

@@ -1,17 +1,21 @@
+#ifndef BINARY_SEARCH__CPP
+#define BINARY_SEARCH__CPP
 #include "BinarySearch.hpp"
 #include <vector>
 
 namespace binary_search
 {
-
-    int Vanilla::calcMidPoint(int a, int b)
+    template<typename T>
+    T Vanilla<T>::calcMidPoint(T a, T b)
     {
         return (a + b) / 2;
     }
 
-    int Vanilla::search(std::vector<int> &nums)
+    template<typename T>
+    T Vanilla<T>::search(std::vector<T>& nums)
     {
-        while (leftIndex <= rightIndex) {
+        while (leftIndex <= rightIndex)
+        {
             if (target == nums[midIndex])
                 return midIndex;
             if (target < nums[midIndex])
@@ -23,7 +27,10 @@ namespace binary_search
         }
         return -1;
     }
-    int Vanilla::search(std::vector<int> &nums, int targetInput) {
+
+    template<typename T>
+    T Vanilla<T>::search(std::vector<T>& nums, T targetInput)
+    {
         leftIndex = 0;
         rightIndex = nums.size() - 1;
         target = targetInput;
@@ -31,6 +38,7 @@ namespace binary_search
         //midIndex = leftIndex + (rightIndex - leftIndex) / 2;
         return search(nums);
     }
+
     int NumberHigherLower::guess(int num)
     {
         if (m_targetNumber < num)
@@ -63,3 +71,4 @@ namespace binary_search
         return -1;
     }
 }//namespace binary_search
+#endif
