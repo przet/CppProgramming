@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinarySearch", "BinarySearch\BinarySearch.vcxproj", "{AD3024D6-B6A2-42C2-BD34-784DB044B65C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TreeTraversal", "TreeTraversal\TreeTraversal.vcxproj", "{6CBF1024-0C3B-4913-9586-8276C57CBCD8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest1", "UnitTest1\UnitTest1.vcxproj", "{25785F59-0DE8-4CE3-9E28-CCD12446DA79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinarySearchDriver", "BinarySearchDriver\BinarySearchDriver.vcxproj", "{A72A5851-540C-4B79-AEB0-59C376EFF3D4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DriverInputData", "DriverInputData\DriverInputData.vcxproj", "{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,38 @@ Global
 		{AD3024D6-B6A2-42C2-BD34-784DB044B65C}.Release|x64.Build.0 = Release|x64
 		{AD3024D6-B6A2-42C2-BD34-784DB044B65C}.Release|x86.ActiveCfg = Release|Win32
 		{AD3024D6-B6A2-42C2-BD34-784DB044B65C}.Release|x86.Build.0 = Release|Win32
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Debug|x64.ActiveCfg = Debug|x64
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Debug|x64.Build.0 = Debug|x64
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Debug|x86.ActiveCfg = Debug|Win32
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Debug|x86.Build.0 = Debug|Win32
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Release|x64.ActiveCfg = Release|x64
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Release|x64.Build.0 = Release|x64
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Release|x86.ActiveCfg = Release|Win32
+		{6CBF1024-0C3B-4913-9586-8276C57CBCD8}.Release|x86.Build.0 = Release|Win32
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Debug|x64.ActiveCfg = Debug|x64
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Debug|x64.Build.0 = Debug|x64
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Debug|x86.ActiveCfg = Debug|Win32
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Debug|x86.Build.0 = Debug|Win32
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Release|x64.ActiveCfg = Release|x64
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Release|x64.Build.0 = Release|x64
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Release|x86.ActiveCfg = Release|Win32
+		{25785F59-0DE8-4CE3-9E28-CCD12446DA79}.Release|x86.Build.0 = Release|Win32
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Debug|x64.ActiveCfg = Debug|x64
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Debug|x64.Build.0 = Debug|x64
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Debug|x86.ActiveCfg = Debug|Win32
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Debug|x86.Build.0 = Debug|Win32
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Release|x64.ActiveCfg = Release|x64
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Release|x64.Build.0 = Release|x64
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Release|x86.ActiveCfg = Release|Win32
+		{A72A5851-540C-4B79-AEB0-59C376EFF3D4}.Release|x86.Build.0 = Release|Win32
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Debug|x64.ActiveCfg = Debug|x64
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Debug|x64.Build.0 = Debug|x64
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Debug|x86.ActiveCfg = Debug|Win32
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Debug|x86.Build.0 = Debug|Win32
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Release|x64.ActiveCfg = Release|x64
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Release|x64.Build.0 = Release|x64
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Release|x86.ActiveCfg = Release|Win32
+		{D0D23D6B-03F7-4DFA-BBEF-8AEE53D28E4C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
