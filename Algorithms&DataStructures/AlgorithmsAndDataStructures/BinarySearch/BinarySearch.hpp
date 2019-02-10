@@ -28,6 +28,23 @@ namespace binary_search
         NumberHigherLower(int targetNumber) : m_targetNumber(targetNumber){}
         int guessNumber(int n);
     };
+
+    template<typename T> 
+	class RotatedArraySearch
+	{
+	private:
+		T left, right, left_1, right_1, left_2, right_2, mid, target;
+		//TODO friendship or something to reuse this function.
+        T calcMidPoint(T a, T b);
+		bool isRotated(std::vector<T>& nums);
+		T pivotPoint(std::vector<T>& nums);
+		T search(std::vector<T>& nums, T leftIdx, T rightIdx);
+	public:
+		T search(std::vector<T>& nums, T targetInput);
+		
+	};
+
+	
 }// namespace binary_search
 
 //Template Definitions-TODO make it a header file

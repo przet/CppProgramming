@@ -8,7 +8,7 @@ namespace binary_search
     template<typename T>
     T Vanilla<T>::calcMidPoint(T a, T b)
     {
-        return (a + b) / 2;
+        return (a + b)/2;
     }
 
     template<typename T>
@@ -70,5 +70,90 @@ namespace binary_search
         }
         return -1;
     }
+
+	template<typename T>
+	T RotatedArraySearch<T>::calcMidPoint(T a, T b)
+	{
+        return a + ((b - a) / 2);
+    }
+
+	template<typename T>
+	bool RotatedArraySearch<T>::isRotated(std::vector<T>& nums)
+	{
+		return nums[0] > nums[nums.size()-1];
+	}
+
+	template<typename T>
+	T RotatedArraySearch<T>::pivotPoint(std::vector<T>& nums)
+	{
+		int size = nums.size();
+		left = 0;
+		right = size - 1;
+
+		while (left <= right)
+		{
+			mid = calcMidPoint(left, right);
+			if (nums[mid] > nums[mid + 1])
+				return mid;
+
+			if (nums[mid] < nums[mid - 1])
+				return mid - 1;
+
+			if (nums[0] > nums[mid])
+				right = --mid;
+			else
+				left = ++mid;
+		}
+		//pivot point not found
+		return -1;
+	}
+
+	template<typename T>
+	T RotatedArraySearch<T>::search(std::vector<T>& nums, T leftIdx, T rightIdx)
+	{
+		left = 0;
+		right = nums.size() - 1;
+
+		while (left <= right)
+		{
+			mid = calcMidPoint(left, right);
+
+			if (nums[mid] == target)
+				return mid;
+
+			if (nums[mid] < target)
+				left = ++mid;
+
+			else
+				right = --mid;
+		}
+
+
+	}
+
+	template<typename T>
+	T RotatedArraySearch<T>::search(std::vector<T>& nums, T targetInput)
+	{
+		int size = nums.size();
+		target = targetInput;
+
+		if (size == 0)
+			return -1;
+
+		if (!isRotated(nums))
+			return search(nums, 0, size-1);
+		int pp = pivotPoint(nums);
+		left_1 = 0;
+		right_1 = pp;
+		left_2 = pp + 1;
+		right_2 = size - 1;
+
+		int search_1 = search(nums, left_1, right_1);
+		int search_2 = search(nums, left_2, right_2);
+
+		return search_1 != -1 ?  search_1: search_2;
+	}
+
+
 }//namespace binary_search
 #endif

@@ -19,6 +19,7 @@ int main()
     binary_search::Vanilla<int> vanillaBinary;
 
     
+    std::cout << SSG.table[0][0] << "\n";
     for (auto vec : SSG.table)
     {
 
@@ -55,6 +56,18 @@ int main()
     auto endTime2 = std::chrono::high_resolution_clock::now();
     auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(endTime2 - startTime2).count();
     std::cout << duration2 << "\n";
+
+	//RotatedArraySearch
+	binary_search::RotatedArraySearch<int> rotatedArraySearch;
+
+	typedef std::vector<int> vec;
+
+	vec vec1{ 1,2,3,4,5 };
+	int t1 = 2;
+	int expectIdx = 1;
+	assert(rotatedArraySearch.search(vec1, t1)==expectIdx);
+
+
 
     
 }
