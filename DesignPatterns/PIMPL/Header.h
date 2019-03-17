@@ -1,15 +1,16 @@
 #pragma once
 
-class OutsideClass
+class ModelClass
 {
 public:
-	OutsideClass();
+	ModelClass();
 	void FunctionOne();
 	void FunctionTwo();
 private:
-	//Forward declaration
-	class OutsideClassImpl;
-	
-	OutsideClassImpl* pimpl;
+	// Forward declaration
+	class ModelClassImpl;
+
+    // Pointer to the Implementation class
+	ModelClassImpl* pimpl;
 };
 

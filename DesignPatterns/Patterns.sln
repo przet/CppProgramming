@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PIMPL", "..\PIMPL\PIMPL.vcxproj", "{8206EB2E-7A16-452C-9BA2-54A3AE00E19A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PIMPL", "PIMPL\PIMPL.vcxproj", "{8206EB2E-7A16-452C-9BA2-54A3AE00E19A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Queries", "Queries\Queries.vcxproj", "{95FE3C67-73F6-4E8E-9787-434A3BE2FEBE}"
 EndProject

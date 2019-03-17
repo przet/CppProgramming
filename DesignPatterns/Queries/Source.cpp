@@ -1,4 +1,5 @@
 #include "Header.h"
+#include <iostream>
 
 struct ModelA : public IModelAIfce
 {
@@ -9,12 +10,12 @@ struct ModelA : public IModelAIfce
 	{
 		void ReadData() override
 		{
-			//Read Data Impl
+            std::cout << "Reading Data" << std::endl;
 		}
 
 		void SendData() override
 		{
-			//Send Data Impl 
+            std::cout << "Sending Data" << std::endl;
 		}
 	};
 
@@ -28,21 +29,17 @@ struct ModelA : public IModelAIfce
 
 void ModelA::DoSomething()
 {
-	int a = 1;
-	int b = 2;
-	int sum = a + b;
+    std::cout << "Hi, I am ModelA, and I am doing something" << std::endl;
 }
 
 void ModelA::DoAnotherThing()
 {
-	int a = 1;
-	int b = 2;
-	int prod = a * b;
+    std::cout << "Hi, I am ModelA, and I am doing another thing" << std::endl;
 }
 
 int main()
 {
 	ModelA ModelAInstance;
 	ModelAInstance.QueryPtr->ReadData();
-
+    return 0;
 }

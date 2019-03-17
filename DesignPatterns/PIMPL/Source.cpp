@@ -1,7 +1,7 @@
 #include "Header.h"
 #include <iostream>
 
-class OutsideClass:: OutsideClassImpl
+class ModelClass::ModelClassImpl 
 {
 public:
 	void FunctionOne()
@@ -10,21 +10,20 @@ public:
 	}
 };
 
-OutsideClass::OutsideClass()
+ModelClass::ModelClass()
 {
-	OutsideClassImpl outsideClassImpl_Instance;
-	pimpl = &outsideClassImpl_Instance;
+	ModelClassImpl modelClassImpl_Instance;
+	pimpl = &modelClassImpl_Instance;
 }
 
-void OutsideClass::FunctionOne()
+void ModelClass::FunctionOne()
 {
 	pimpl->FunctionOne();
 }
 
 int main()
 {
-	OutsideClass outSideClass_Instance;
-	outSideClass_Instance.FunctionOne();
-	system("pause");
+	ModelClass modelClass_Instance;
+	modelClass_Instance.FunctionOne();
 	return 0;
 }
