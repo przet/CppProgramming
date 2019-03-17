@@ -8,11 +8,8 @@ namespace sample_space
     typedef std::vector<int> Vec;
     typedef std::vector<Vec> VecOfVec;
 
-    //Temp stuff - erase. Probably don't need the above typdefs afterwards also
     Vec v1, v2;
-    VecOfVec tableau{ v1,v2 };
-    
-    
+    VecOfVec tableu{ v1,v2 };
 
     void SampleSpaceGenerator::generator(const int sampleSize)
     {
