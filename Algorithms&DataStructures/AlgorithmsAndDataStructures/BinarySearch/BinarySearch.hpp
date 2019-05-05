@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory> // std::allocator
+#include <stack> 
 
 namespace binary_search
 {
@@ -42,6 +43,21 @@ namespace binary_search
 	public:
 		T search(std::vector<T>& nums, T targetInput);
 		
+	};
+
+	class FindKClosetNeighbours
+	{
+	private:
+		std::vector<int> tgtStore;
+		std::vector<int> leftOfTgtStore;
+		std::stack<int> leftOfTgt_intermediate_Store;
+		std::vector<int> rightOfTgtStore;
+	public:
+		std::vector<int> PrintKClosestNeighbours(
+			std::vector<int>& inputArr,
+			const int k,
+			const int tgtIdx
+		);
 	};
 
 	

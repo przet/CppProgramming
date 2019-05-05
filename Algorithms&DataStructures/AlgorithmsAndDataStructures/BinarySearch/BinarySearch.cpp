@@ -154,6 +154,54 @@ namespace binary_search
 		return search_1 != -1 ?  search_1: search_2;
 	}
 
+	std::vector<int> FindKClosetNeighbours::PrintKClosestNeighbours(
+		std::vector<int>& inputArr,
+		const int k,
+		const int tgtIdx
+	)
+	{
+		// Store target value
+		tgtStore.push_back(inputArr[tgtIdx]);
+		
+		int count = 1;
+		int i = 0;
+		while (count < k)
+		{
+			i++;
+			if (tgtIdx - i >= 0)
+			{
+				leftOfTgt_intermediate_Store.push(inputArr[tgtIdx - i]);
+				rightOfTgtStore.push_back(inputArr[tgtIdx + i]);
+				count += 2;
+			}
+			else
+			{
+				rightOfTgtStore.push_back(inputArr[tgtIdx + i]);
+				count += 1;
+			}
+
+		}
+
+		if (count == k + 1)
+		{
+			rightOfTgtStore.erase(rightOfTgtStore.end() - 1);
+		}
+		std::vector <int> result;
+
+		while (!leftOfTgt_intermediate_Store.empty())
+		{
+			result.push_back(leftOfTgt_intermediate_Store.top());
+			leftOfTgt_intermediate_Store.pop();
+		}
+		result.push_back(inputArr[tgtIdx]);
+
+		for (auto elem : rightOfTgtStore)
+		{
+			result.push_back(elem);
+		}
+		
+		return result;
+	}
 
 }//namespace binary_search
 #endif

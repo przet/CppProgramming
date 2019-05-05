@@ -14,7 +14,7 @@
 int main()
 {
 
-    sample_space::SampleSpaceGenerator SSG;
+    /*sample_space::SampleSpaceGenerator SSG;
     SSG.generator(100);
     binary_search::Vanilla<int> vanillaBinary;
 
@@ -34,7 +34,7 @@ int main()
         auto endTime = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
         std::cout << "Input of size " << vec.size() << " has execution time of " << duration << " us" << " and result of search is " << result <<"\n";
-    }
+    } */
 
     /*TODO: Test for big sizes (will complain)
     std::vector <int> bigVec(/*bignumber here);
@@ -48,7 +48,7 @@ int main()
 
 
 
-    binary_search::NumberHigherLower NHL(1702766719);
+   /* binary_search::NumberHigherLower NHL(1702766719);
     assert(NHL.guessNumber(2126753390) == 1702766719);
 
     auto startTime2 = std::chrono::high_resolution_clock::now();
@@ -65,9 +65,30 @@ int main()
 	vec vec1{ 1,2,3,4,5 };
 	int t1 = 2;
 	int expectIdx = 1;
-	assert(rotatedArraySearch.search(vec1, t1)==expectIdx);
+	assert(rotatedArraySearch.search(vec1, t1)==expectIdx); */
 
+	//*******************************************************************
+	// K Closest Neighbours
 
+	std::vector<int> inputArr{ 1,2,3,4,5,6,7 };
+	int k = 5;
+	int tgtIdx = 1;
+	binary_search::FindKClosetNeighbours findNeighbours;
+	std::vector<int> result = findNeighbours.PrintKClosestNeighbours(
+		inputArr,
+		k,
+		tgtIdx
+	);
+	std::vector<int> expectedResult{1,2,3,4,5 };
+	//assert(result == expectedResult);
+	for (auto elem : result)
+	{
+		std::cout << elem << std::endl;
+	}
+
+	
+
+	return 0;
 
     
 }
