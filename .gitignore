@@ -45,3 +45,5 @@ Release/
 Debug/
 *.db
 
+
+*.log
