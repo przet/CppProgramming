@@ -162,23 +162,43 @@ namespace binary_search
 	{
 		// Store target value
 		tgtStore.push_back(inputArr[tgtIdx]);
+
+		// Variable to store the end index of the input array 
+		int LastIdx = inputArr.size() - 1;
+
+		// Left and right indicies
+		int LeftIdx, RightIdx;
 		
 		int count = 1;
-		int i = 0;
+		int i = 1;
 		while (count < k)
 		{
-			i++;
-			if (tgtIdx - i >= 0)
+			LeftIdx = tgtIdx - i;
+			RightIdx = tgtIdx + i;
+			if (LeftIdx >= 0 && RightIdx <= LastIdx)
 			{
-				leftOfTgt_intermediate_Store.push(inputArr[tgtIdx - i]);
-				rightOfTgtStore.push_back(inputArr[tgtIdx + i]);
+				leftOfTgt_intermediate_Store.push(inputArr[LeftIdx]);
+				rightOfTgtStore.push_back(inputArr[RightIdx]);
 				count += 2;
+			}
+			else if (RightIdx <= LastIdx)
+			{
+				rightOfTgtStore.push_back(inputArr[RightIdx]);
+				count += 1;
+			}
+
+			else if (LeftIdx >= 0)
+			{
+				leftOfTgt_intermediate_Store.push(inputArr[LeftIdx]);
+				count += 1;
+
 			}
 			else
 			{
-				rightOfTgtStore.push_back(inputArr[tgtIdx + i]);
-				count += 1;
+				break;
 			}
+			i++;
+
 
 		}
 
