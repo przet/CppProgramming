@@ -58,6 +58,12 @@ namespace binary_search
 			const int k,
 			const int tgtIdx
 		);
+
+		std::vector<int> PrintKClosestNeighbours_TARGETOUT(
+			std::vector<int>& inputArr,
+			const int k,
+			const int tgtVal
+		);
 	};
 
 	

@@ -98,3 +98,30 @@ TEST(KClosestNeighbours, NextRightisRightBound)
 	EXPECT_TRUE(true);
 }
 
+TEST(KClosestNeighbours, TargetValueIsSmallest)
+{
+	binary_search::FindKClosetNeighbours FindKClosestNeighbours;
+	std::vector<int> inputArr{ 1,2,3,4,5,6,7 };
+	int k = 5;
+	int tgtVal = -1;
+	
+	auto result = FindKClosestNeighbours.PrintKClosestNeighbours_TARGETOUT(inputArr, k, tgtVal);
+	auto expectedResult = std::vector<int>{ 1,2,3,4,5 };
+
+	EXPECT_EQ(result, expectedResult);
+	EXPECT_TRUE(true);
+}
+
+TEST(KClosestNeighbours, TargetValueIsLargest)
+{
+	binary_search::FindKClosetNeighbours FindKClosestNeighbours;
+	std::vector<int> inputArr{ 1,2,3,4,5,6,7 };
+	int k = 5;
+	int tgtVal = 10;
+	
+	auto result = FindKClosestNeighbours.PrintKClosestNeighbours_TARGETOUT(inputArr, k, tgtVal);
+	auto expectedResult = std::vector<int>{ 3,4,5,6,7 };
+
+	EXPECT_EQ(result, expectedResult);
+	EXPECT_TRUE(true);
+}

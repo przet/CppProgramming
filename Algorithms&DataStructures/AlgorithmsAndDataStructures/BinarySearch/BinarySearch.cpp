@@ -191,21 +191,19 @@ namespace binary_search
 			{
 				leftOfTgt_intermediate_Store.push(inputArr[LeftIdx]);
 				count += 1;
-
 			}
 			else
 			{
 				break;
 			}
 			i++;
-
-
 		}
 
 		if (count == k + 1)
 		{
 			rightOfTgtStore.erase(rightOfTgtStore.end() - 1);
 		}
+
 		std::vector <int> result;
 
 		while (!leftOfTgt_intermediate_Store.empty())
@@ -221,6 +219,47 @@ namespace binary_search
 		}
 		
 		return result;
+	}
+
+	std::vector<int> FindKClosetNeighbours::PrintKClosestNeighbours_TARGETOUT(std::vector<int>& inputArr, const int k, const int tgtVal)
+	{
+		const int LowestVal = inputArr[0];
+		const int HighestVal = inputArr[inputArr.size() - 1];
+
+		std::vector<int> result;
+
+		int count = 1;
+		auto it = inputArr.begin();
+		if (tgtVal < LowestVal)
+		{
+			while (count <= k)
+			{
+				result.push_back(*it++);
+				++count;
+			}
+			
+			return result; 
+		}
+
+		count = 1;
+		it = inputArr.end() - 1;
+		std::stack<int> tempStack;
+		if (tgtVal > HighestVal)
+		{
+			while (count <= k)
+			{
+				tempStack.push(*it--);
+				++count;
+			}
+			
+			while (!tempStack.empty())
+			{
+				result.push_back(tempStack.top());
+				tempStack.pop();
+			}
+			return result; 
+		}
+
 	}
 
 }//namespace binary_search
