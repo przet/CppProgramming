@@ -8,11 +8,11 @@ namespace binary_search
     template<typename T>
     T Vanilla<T>::calcMidPoint(T a, T b)
     {
-        return (a + b)/2;
+        return a + ((b - a) / 2);
     }
 
     template<typename T>
-    T Vanilla<T>::search(std::vector<T>& nums)
+    T Vanilla<T>::search_I(std::vector<T>& nums)
     {
         while (leftIndex <= rightIndex)
         {
@@ -22,9 +22,54 @@ namespace binary_search
                 rightIndex = midIndex - 1;
             else
                 leftIndex = midIndex + 1;
-            midIndex= calcMidPoint(rightIndex, leftIndex);
-            //midIndex = leftIndex + (rightIndex - leftIndex) / 2;
+
+            midIndex= calcMidPoint(leftIndex, rightIndex);
         }
+        return -1;
+    }
+
+    template<typename T>
+    T Vanilla<T>::search_II(std::vector<T>& nums)
+    {
+        while (leftIndex <= rightIndex)
+        {
+            if (target == nums[midIndex])
+                return midIndex;
+            if (target < nums[midIndex])
+                rightIndex = midIndex;
+            else
+                leftIndex = midIndex + 1;
+            midIndex = calcMidPoint(leftIndex, rightIndex);
+        }
+
+        // Post-processing:
+        if (leftIndex != nums.size() && nums[leftIndex] == target)
+            return leftIndex;
+
+        return -1;
+    }
+
+    template<typename T>
+    T Vanilla<T>::search_III(std::vector<T>& nums)
+    {
+        while (leftIndex + 1 < rightIndex)
+        {
+            if (target == nums[midIndex])
+                return midIndex;
+            if (target < nums[midIndex])
+                rightIndex = midIndex;
+            else
+                leftIndex = midIndex;
+
+            midIndex = calcMidPoint(leftIndex, rightIndex);
+        }
+
+        // Post-processing:
+        if (nums[leftIndex] == target)
+            return leftIndex;
+        if (nums[rightIndex] == target)
+            return rightIndex;
+
         return -1;
     }
 
@@ -34,8 +79,7 @@ namespace binary_search
         leftIndex = 0;
         rightIndex = nums.size() - 1;
         target = targetInput;
-        midIndex= calcMidPoint(rightIndex, leftIndex);
-        //midIndex = leftIndex + (rightIndex - leftIndex) / 2;
+        midIndex= calcMidPoint(leftIndex, rightIndex);
         return search(nums);
     }
 
@@ -54,12 +98,11 @@ namespace binary_search
         rightIndex = n;
         while (leftIndex <= rightIndex)
         {
-            //midIndex = leftIndex +  (rightIndex - leftIndex) / 2;
             auto temp1 =  rightIndex - leftIndex;
             auto temp2 =  rightIndex + leftIndex;
             
             //cast leftIndex + rightIndex (_not_ the division result) to size_t to expand storage size for
-            //this intermediated calculation (wrap around otherwise, resulting in slow/incomplete algo)
+            //this intermediate calculation (wrap around otherwise, resulting in slow/incomplete algo)
             midIndex = (size_t)(leftIndex + rightIndex) / 2;
             if (guess(midIndex) == 0)
                 return midIndex;

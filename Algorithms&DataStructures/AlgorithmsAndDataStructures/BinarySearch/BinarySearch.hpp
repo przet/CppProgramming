@@ -13,7 +13,9 @@ namespace binary_search
     private:
         T leftIndex, rightIndex, midIndex, target;
         T calcMidPoint(T a, T b);
-        T search(std::vector<T>& nums);
+        T search_I(std::vector<T>& nums);
+        T search_II(std::vector<T>& nums);
+        T search_III(std::vector<T>& nums);
     public:
         T search(std::vector<T>& nums, T targetInput);
     };
