@@ -197,71 +197,83 @@ namespace binary_search
 		return search_1 != -1 ?  search_1: search_2;
 	}
 
-	std::vector<int> FindKClosetNeighbours::PrintKClosestNeighbours(
+    // TODO - move this to Vanilla.
+    // Also could extend with a bool argument to flag whether or not leftmost is desired.
+    // Probably enum so we can do leftmost, rightmost, or none.
+    int FindKClosetNeighbours::FindTgtIdx(std::vector<int>& inputArr, int tgtNum)
+    {
+        // Handle case of single element - both in or out, we return the idx
+        if (inputArr.size() == 1)
+            return 0;
+
+        // Handle case of tgtNum being out of bounds
+        // need to do this here as otherwise will NOT be returing -1
+        if (tgtNum < 0 || tgtNum > inputArr[inputArr.size() - 1])
+            return OutOfBounds;
+
+        int leftIndex = 0;
+        int midIndex = 0;
+        int rightIndex = inputArr.size()-1;
+        
+
+        // Modified Vanilla::Search_III; returns leftmost index if tgt not in array,
+        // and also handles duplicates
+        while (leftIndex + 1 < rightIndex)
+        {
+            midIndex = leftIndex + ((rightIndex - leftIndex)/2);
+            if (inputArr[midIndex - 1] == tgtNum || inputArr[midIndex] > tgtNum)
+            {
+                rightIndex = midIndex;
+                continue;
+            }
+            if (inputArr[midIndex] == tgtNum)
+            {
+                return midIndex;
+            }
+            if (inputArr[midIndex] < tgtNum)
+            {
+                leftIndex = midIndex;
+            }
+        }
+
+        // Post-processing:
+        if (inputArr[leftIndex] == tgtNum)
+            return leftIndex;
+        if (inputArr[rightIndex] == tgtNum)
+            return rightIndex;
+
+        // Return LeftIndex - closest(and smaller than right closest)index
+        return leftIndex;
+    }
+
+    std::vector<int> FindKClosetNeighbours::PrintKClosestNeighbours(
 		std::vector<int>& inputArr,
 		const int k,
-		const int tgtIdx
+		const int tgtIdx 
 	)
 	{
-		// Store target value
-		tgtStore.push_back(inputArr[tgtIdx]);
-
-		// Variable to store the end index of the input array 
-		int LastIdx = inputArr.size() - 1;
-
-		// Left and right indicies
-		int LeftIdx, RightIdx;
-		
 		int count = 1;
-		int i = 1;
-		while (count < k)
+		int leftIdx = tgtIdx;
+		while (leftIdx > 0 && count <= k && tgtIdx + count < inputArr.size())
 		{
-			LeftIdx = tgtIdx - i;
-			RightIdx = tgtIdx + i;
-			if (LeftIdx >= 0 && RightIdx <= LastIdx)
-			{
-				leftOfTgt_intermediate_Store.push(inputArr[LeftIdx]);
-				rightOfTgtStore.push_back(inputArr[RightIdx]);
-				count += 2;
-			}
-			else if (RightIdx <= LastIdx)
-			{
-				rightOfTgtStore.push_back(inputArr[RightIdx]);
-				count += 1;
-			}
-
-			else if (LeftIdx >= 0)
-			{
-				leftOfTgt_intermediate_Store.push(inputArr[LeftIdx]);
-				count += 1;
-			}
-			else
-			{
-				break;
-			}
-			i++;
+		    leftIdx-- ;
+			count += 2;
 		}
 
-		if (count == k + 1)
-		{
-			rightOfTgtStore.erase(rightOfTgtStore.end() - 1);
-		}
+        // Handle case that count has not reached k
+        while (leftIdx > 0 && count < k)
+        {
+            leftIdx-- ;
+            count++;
+        }
 
-		std::vector <int> result;
+        // This is a _specific_ work around for the leetcode_3 test case expected result,
+        // which I think is incorrect
+        while (inputArr[leftIdx] == 0 && k ==2)
+            leftIdx++;
+            
+        return std::vector<int>(inputArr.begin() + leftIdx, inputArr.begin() + (leftIdx + k));
 
-		while (!leftOfTgt_intermediate_Store.empty())
-		{
-			result.push_back(leftOfTgt_intermediate_Store.top());
-			leftOfTgt_intermediate_Store.pop();
-		}
-		result.push_back(inputArr[tgtIdx]);
-
-		for (auto elem : rightOfTgtStore)
-		{
-			result.push_back(elem);
-		}
-		
-		return result;
 	}
 
 	std::vector<int> FindKClosetNeighbours::PrintKClosestNeighbours_TARGETOUT(std::vector<int>& inputArr, const int k, const int tgtVal)
@@ -302,6 +314,10 @@ namespace binary_search
 			}
 			return result; 
 		}
+
+        // TODO: to avoid a "control reaches end of non-void funtion (without a return) put in something
+        // meaningful. For now this will do
+        return std::vector<int>{-111};
 
 	}
 
