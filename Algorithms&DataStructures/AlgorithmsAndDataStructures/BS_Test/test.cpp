@@ -79,7 +79,7 @@ TEST(KClosestElements, Test_TgtNumInsideAndPresent_7)
     EXPECT_TRUE(true);
 }
 
-/*
+
 TEST(KClosestElements, Test_TgtNumInsideAndPresent_8)
 {
     binary_search::KClosestElements _KClosestElements;
@@ -90,7 +90,7 @@ TEST(KClosestElements, Test_TgtNumInsideAndPresent_8)
     auto expectedResult = std::vector<int>{-10, -9, 3, 100};
     EXPECT_EQ(result, expectedResult);
     EXPECT_TRUE(true);
-}*/
+}
 TEST(KClosestElements, Test_TgtNumInsideNOTPresent_1)
 {
     binary_search::KClosestElements _KClosestElements;
@@ -158,7 +158,7 @@ TEST(KClosestElements, Test_TgtNumOutside_4)
     EXPECT_EQ(result, expectedResult);
     EXPECT_TRUE(true);
 }
-/*
+
 TEST(KClosestElements, Test_TgtNumInsideAndPresent_Duplicates)
 {
     binary_search::KClosestElements _KClosestElements;
@@ -166,10 +166,10 @@ TEST(KClosestElements, Test_TgtNumInsideAndPresent_Duplicates)
     int tgtNum = 3;
     int k = 4;
     auto result = _KClosestElements.Solution(inputArr, k, tgtNum);
-    auto expectedResult = std::vector<int>{1,3,4,5 };
+    auto expectedResult = std::vector<int>{1,1,3,4};
     EXPECT_EQ(result, expectedResult);
     EXPECT_TRUE(true);
-}*/
+}
 /*
 TEST(KClosestNeighbours, Test_FindTargetIdx_TargetIn_1)
 {
