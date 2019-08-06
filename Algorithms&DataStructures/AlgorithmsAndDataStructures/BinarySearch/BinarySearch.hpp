@@ -88,50 +88,77 @@ namespace binary_search
     {
         std::vector<int> Solution(std::vector<int>& arr, int k, int x)
         {
-            std::vector<std::pair<int, int>> DistanceArray;
-        for (int i = 0; i < arr.size(); ++i)
-        {
-            DistanceArray.push_back({abs(x-arr[i]), i});
-        }
-        
-        for (int j = 0; j < DistanceArray.size(); ++j)
-        {
-           
-           for (int i = j; i + 1 < DistanceArray.size();++i)
-           {
-               if (DistanceArray[i+1].first < DistanceArray[j].first)
-               {
-                   auto temp = DistanceArray[j];
-                   DistanceArray[j] = DistanceArray[i+1];
-                   DistanceArray[i+1] = temp;
-               }
-           }
-        }
-        
-        
-        std::vector<int> ResultStaging;
-        for (auto elem : DistanceArray)
-            ResultStaging.push_back(arr[elem.second]);
-        
-        
-        auto Result = std::vector<int>(ResultStaging.begin(), ResultStaging.begin() + k);
+            if (k == arr.size())
+                return arr;
+            if (x < arr[0])
+                return std::vector<int>(arr.begin(), arr.begin() + k);
+            if (x > arr[arr.size() - 1])
+            {
+                // TODO - find a quicker/more consise way?
+                std::stack<int> tempStack;
+                int count = 0;
+                for (auto rit = arr.rbegin(); rit != arr.rend(), count < k; ++rit, ++count)
+                {
+                    tempStack.push(*rit);
+                }
+                std::vector<int> returnVec;
+                while (!tempStack.empty())
+                {
+                    returnVec.push_back(tempStack.top());
+                    tempStack.pop();
+                }
+                return returnVec;
+            }
+
+
+            FindKClosetNeighbours _FKCN;
+            int TgtIdx = _FKCN.FindTgtIdx(arr, x);
+
+            int Left = TgtIdx;
+            int Right = ++TgtIdx;
+
+            int count = 0;
+            int Size = arr.size();
+            std::stack<int> Stack;
+            std::vector<int> RightVector;
             
-        for (int j = 0; j < Result.size(); ++j)
-        {
-           
-           for (int i = j; i + 1 < Result.size();++i)
-           {
-               if (Result[i+1] < Result[j])
-               {
-                   int temp = Result[j];
-                   Result[j] = Result[i+1];
-                   Result[i+1] = temp;
-               }
-           }
+            while (Left >= 0 && Right < Size && count < k)
+            {
+                if (x - arr[Left] <= arr[Right] - x)
+                    Stack.push(arr[Left--]);
+                else
+                    RightVector.push_back(arr[Right++]);
+                ++count;
+            }
+
+            while (count < k && Left >= 0)
+            {
+                Stack.push(arr[Left--]);
+                ++count;
+            }
+
+            while (count < k && Right < Size)
+            {
+                RightVector.push_back(arr[Right++]);
+                ++count;
+            }
+
+            // Create the left part of the solution
+            std::vector<int> LeftVector;
+            while (!Stack.empty())
+            {
+                LeftVector.push_back(Stack.top());
+                Stack.pop();
+            }
+
+            std::vector<int> FinalSolution(LeftVector);
+            FinalSolution.insert(FinalSolution.end(), RightVector.begin(), RightVector.end());
+
+            return FinalSolution;
+
         }
         
-        return Result;
-        }
+
 
 
     };
