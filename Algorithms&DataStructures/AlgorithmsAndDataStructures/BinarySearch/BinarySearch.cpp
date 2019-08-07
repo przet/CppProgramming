@@ -206,11 +206,6 @@ namespace binary_search
         if (inputArr.size() == 1)
             return 0;
 
-        // Handle case of tgtNum being out of bounds
-        // need to do this here as otherwise will NOT be returing -1
-        if (tgtNum < 0 || tgtNum > inputArr[inputArr.size() - 1])
-            return OutOfBounds;
-
         int leftIndex = 0;
         int midIndex = 0;
         int rightIndex = inputArr.size()-1;
