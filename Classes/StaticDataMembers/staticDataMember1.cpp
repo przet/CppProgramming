@@ -18,6 +18,7 @@ int Widget::count = 0; //Is this not zero always as a) it is global and b) it is
 int main(int argc , char** argv)
 {
 	Widget w, x, y, z;
+        // If 1, print "widget" (singlular) 
 	if (w.numWidgets() != 1) 
 			std::cout << "\nThere are " << y.numWidgets() << " widgets. \n\n";
 	else
