@@ -31,16 +31,13 @@ bool checkLuaInput(lua_State* luaVM, int retCode);
 
 int main(int argc, char** argv)
 {
-    // TODO: file!
-    std::string cmd = "a = 7 + 11 + math.sin(23.7)";
-
     // Create Lua VM (persistent)
     // TODO: Q: what cleans it up? Are we placing it on the heap?
     lua_State* L = luaL_newstate();
     luaL_openlibs(L); // includes math
 
     // note c_str: in C land here 
-    int r = luaL_dostring(L, cmd.c_str());
+    int r = luaL_dofile(L, "..\\LuaScript.lua");
 
     // For any embedding - need to have checks!!
     if(checkLuaInput(L, r))
@@ -53,20 +50,6 @@ int main(int argc, char** argv)
         }
      }
 
-    // demonstration of Lua VM persitence
-    cmd = "a = a + 100";
-    r = luaL_dostring(L, cmd.c_str());
-
-    // TODO extract this repeated code into a function
-    if(checkLuaInput(L, r))
-    {
-        lua_getglobal(L, "a");
-        if (lua_isnumber(L, -1))
-        {
-            float a_in_cpp = (float)lua_tonumber(L, -1);
-            printToConsole("a in cpp =  ", a_in_cpp);
-        }
-     }
     return 0;
 }
 
