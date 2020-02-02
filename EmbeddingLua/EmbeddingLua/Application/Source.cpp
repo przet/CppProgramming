@@ -46,29 +46,27 @@ int main(int argc, char** argv)
 
     int r = luaL_dofile(L, "..\\LuaScript.lua");
 
-    if(checkLuaInput(L, r))
+    if (checkLuaInput(L, r))
     {
-        lua_getglobal(L, "player");
-        if (lua_istable(L, -1))
+        lua_getglobal(L, "AddStuff");
+        if (lua_isfunction(L, -1))
         {
-            // Stack management time!
-            // Top of stack: player table
-            // We want the Name (key) value
-            // So: push string
-            // Push "Name" to top of lua stack - table now at -2
-            // lua_gettable, then reads top of stack as a key into the table,
-            // replaces top of stack with the value associated with the key(via a pop)
-            // get top of stack, then pop it off to reset stack - not essential (can manage indices),
-            // but is good practice (consider: working with larger, nested data structures
-            lua_pushstring(L, "Name");
-            lua_gettable(L, -2);
-            player.name = lua_tostring(L, -1);
-            printToConsole("Player name is: ", player.name);
-            // Note 1 not -1
-            // TODO: ... investigate _why_...
-            lua_pop(L, 1);
+            lua_pushnumber(L, 3.5f);
+            lua_pushnumber(L, 7.1f);
+
+            // note we need to pass in 2, the number of arguments to function
+            // and the number of arguments we are expecting as output (1)
+            // lua_pcall executes the function
+            if (checkLuaInput(L, lua_pcall(L, 2, 1, 0)))
+            {
+                // we told lua we are providing 2 args, so it
+                // pops 2 elems from stack and replaces with result
+                printToConsole("C++ called lua AddStuff(3.5f,7.1f) = ", (float)lua_tonumber(L, -1));
+
+
+            }
         }
-     }
+    }
 
     return 0;
 }
