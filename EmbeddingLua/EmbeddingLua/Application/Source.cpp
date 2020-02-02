@@ -44,20 +44,29 @@ int main(int argc, char** argv)
     lua_State* L = luaL_newstate();
     luaL_openlibs(L); // includes math
 
-    // note c_str: in C land here 
     int r = luaL_dofile(L, "..\\LuaScript.lua");
 
-    // For any embedding - need to have checks!!
     if(checkLuaInput(L, r))
     {
-        lua_getglobal(L, "PlayerName");
-        // Note it is important to know the nature of the data 
-        // in the lua script (string, fp etc).
-        // TODO: infer? how? Eventually we might not be able to infer...
-        if (lua_isstring(L, -1))
+        lua_getglobal(L, "player");
+        if (lua_istable(L, -1))
         {
+            // Stack management time!
+            // Top of stack: player table
+            // We want the Name (key) value
+            // So: push string
+            // Push "Name" to top of lua stack - table now at -2
+            // lua_gettable, then reads top of stack as a key into the table,
+            // replaces top of stack with the value associated with the key(via a pop)
+            // get top of stack, then pop it off to reset stack - not essential (can manage indices),
+            // but is good practice (consider: working with larger, nested data structures
+            lua_pushstring(L, "Name");
+            lua_gettable(L, -2);
             player.name = lua_tostring(L, -1);
             printToConsole("Player name is: ", player.name);
+            // Note 1 not -1
+            // TODO: ... investigate _why_...
+            lua_pop(L, 1);
         }
      }
 
