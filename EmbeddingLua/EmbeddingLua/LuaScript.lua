@@ -1,3 +1,5 @@
---Visual Studio can syntax highlight lua
-a = 7 + 11 + math.sin(23.7) 
-a = a + 100
+-- Use lua file as a settings file
+PlayerTitle = "Master"
+PlayerName = "Wilberforce"
+PlayerFamily = "Paladin"
+PlayerLevel = 4
