@@ -59,28 +59,24 @@ bool ValidParens::isValid(std::string& input)
     if(vInputSize % 2 != 0)
         return false;
 
-    if (!openParen(input[0])
+    if (vInputSize % 2 != 0
+       || !openParen(input[0])
        || openParen(input[vInputSize-1])) 
-        return false;
+         return false;
     
     OpenParenStack vOpstack;
     vOpstack.push(input[0]);
 
     int j = 1;
-
     while (j < vInputSize)
     {
-        auto vCurrParen = input[j];
+        auto vCurrParen = input[j++];
         if (openParen(vCurrParen))
-        {
             vOpstack.push(vCurrParen);
-            j++;
-        }
+
         else if (vOpstack.size() && parenMatch(vCurrParen, vOpstack.top()))
-        {
             vOpstack.pop();
-            j++;
-        }
+
         else
             return false;
     }
