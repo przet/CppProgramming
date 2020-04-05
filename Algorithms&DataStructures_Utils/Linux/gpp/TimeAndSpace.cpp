@@ -6,6 +6,7 @@
 #include "generator_test.hpp"
 #include "solution_test.hpp"
 #include <iostream>
+#include <fstream>
 
 template <template <typename... > class Container, typename ContainerDataType>
 struct Time
@@ -40,14 +41,28 @@ struct Time
 int main (int argc, char** argv)
 {
     Solution mSolution;
-    std::vector<int> mInputSizeList{0,500,1000,5000,10000,50000,100000};
+    std::vector<int> mInputSizeList{1,500,1000,5000,10000,50000,100000};
     Generator mGenerator(mInputSizeList);
 
     Time mTime(&mSolution, &mGenerator);
     const std::vector<std::pair<int,int>>& result = mTime.result();
 
+    std::ofstream vOutputCSV;
+    // TODO cl arg for outputfilename
+    vOutputCSV.open("test.csv");
+
+    if (!vOutputCSV.good())
+    {
+        std::cout << "Output file not 'good'. Exiting...";
+        return 1;
+    }
+
+    vOutputCSV << "InputSize, RunTime\n";
+
     for (const auto& elem : result)
-        std::cout << "InputSize: " << elem.first << "    " << "RunTime: " << elem.second << std::endl;
-    
+        vOutputCSV << std::to_string(elem.first) + "," + std::to_string(elem.second) + "\n";
+
+    vOutputCSV.close();
+
     return 0;
 }
