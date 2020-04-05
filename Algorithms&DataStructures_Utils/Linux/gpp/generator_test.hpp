@@ -14,7 +14,7 @@ struct Generator : public IGenerator
         for (auto elem : mInputSizeList)
         {
             std::vector<int> data(elem);
-            auto f = []() -> int {return rand() % 10000;};
+            auto f = [](){return rand() % 10000;};
             std::generate(data.begin(), data.end(), f);
             mData_InputSizeList.push_back({data,elem});
         }
