@@ -1,7 +1,6 @@
+template <template <typename... > class Container, typename ContainerDataType>
 struct IGenerator
 {
-    virtual void Generate() = 0;
-    // TODO template this. There was some syntax trouble with vector, pair 
-    virtual const std::vector<std::pair<std::vector<int>,int>>& generatedData() = 0; 
+    virtual const std::vector<std::pair<Container<ContainerDataType>,int>>& generateData() = 0; 
     virtual ~IGenerator(){}
 };

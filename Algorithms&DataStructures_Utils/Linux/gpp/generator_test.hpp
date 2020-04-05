@@ -3,13 +3,13 @@
 #include <utility>
 #include <algorithm>
 
-struct Generator : public IGenerator
+struct Generator : public IGenerator<std::vector,int>
 {
-    // TODO ctor in ifce
     Generator(const std::vector<int>& rInputSizeList)
         : mInputSizeList(rInputSizeList) {}
 
-    void Generate() override
+
+    const std::vector<std::pair<std::vector<int>,int>>& generateData() override
     {
         for (auto elem : mInputSizeList)
         {
@@ -18,10 +18,6 @@ struct Generator : public IGenerator
             std::generate(data.begin(), data.end(), f);
             mData_InputSizeList.push_back({data,elem});
         }
-    }
-
-    const std::vector<std::pair<std::vector<int>,int>>& generatedData() override
-    {
         return mData_InputSizeList;
     }
 
