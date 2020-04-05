@@ -1,3 +1,6 @@
+#ifndef __Generator__H
+#define __Generator__H
+
 #include "IGenerator.hpp"
 #include <vector>
 #include <utility>
@@ -25,3 +28,5 @@ struct Generator : public IGenerator<std::vector,int>
     std::vector<int> mInputSizeList;
 
 };
+
+#endif

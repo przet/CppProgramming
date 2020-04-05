@@ -1,5 +1,5 @@
-//#include "ISolution.hpp" 
-//#include "IGenerator.hpp"
+#include "ISolution.hpp"
+#include "IGenerator.hpp"
 #include <utility>
 #include <vector>
 #include <chrono>

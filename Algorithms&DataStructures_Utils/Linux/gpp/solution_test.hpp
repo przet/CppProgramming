@@ -1,3 +1,6 @@
+#ifndef __Solution__H
+#define __Solution__H
+
 #include "ISolution.hpp"
 #include <vector>
 
@@ -16,4 +19,6 @@ struct Solution : public ISolution<std::vector,int>
 
 
 };
+
+#endif
 
