@@ -7,6 +7,8 @@
 #include "solution_test.hpp"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
+#include <string>
 
 template <template <typename... > class Container, typename ContainerDataType>
 struct Time
@@ -40,8 +42,18 @@ struct Time
 
 int main (int argc, char** argv)
 {
+    if (argc == 1)
+    {
+        std::cout << "Must provide at least max size of input list" << std::endl;
+        std::cout << "Exiting.... " << std::endl;
+        return 1;
+    }
+        
+    std::string maxSize_string(*(argv + 1));
     Solution mSolution;
-    std::vector<int> mInputSizeList{1,500,1000,5000,10000,50000,100000};
+    int maxSize  = std::stoi(maxSize_string);
+    std::vector<int> mInputSizeList(maxSize);
+    std::generate(begin(mInputSizeList), end(mInputSizeList), [n = 0]() mutable {return n +=50 ;});
     Generator mGenerator(mInputSizeList);
 
     Time mTime(&mSolution, &mGenerator);
