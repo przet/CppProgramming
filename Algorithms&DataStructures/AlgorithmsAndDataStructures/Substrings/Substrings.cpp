@@ -38,14 +38,18 @@ bool substringExists(std::string parent, std::string target)
     #endif
 
     int targetSize = target.size();
+    int hitCount = 0;
 
     auto algo = [&](const auto& elem)
     {
+        if (hitCount == target.size())
+            return true;
         if (target_array[elem])
         {
             --target_array[elem];
+            ++hitCount;
         }
     };
     std::for_each(std::begin(parent), std::end(parent), algo);
-    return !std::accumulate(std::begin(target_array), std::end(target_array), 0);
+    return hitCount == target.size();
 }
