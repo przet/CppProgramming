@@ -6,9 +6,8 @@
 #include "Substrings.h"
 #include <string>
 #include <assert.h>
-#include <algorithm>
-#include <numeric>
 #if _DEBUG
+#include <algorithm>
 #include <set>
 #endif
 
@@ -40,7 +39,7 @@ bool substringExists(std::string parent, std::string target)
     int targetSize = target.size();
     int hitCount = 0;
 
-    auto algo = [&](const auto& elem)
+    for (const auto& elem : parent)
     {
         if (hitCount == target.size())
             return true;
@@ -49,7 +48,6 @@ bool substringExists(std::string parent, std::string target)
             --target_array[elem];
             ++hitCount;
         }
-    };
-    std::for_each(std::begin(parent), std::end(parent), algo);
+    }
     return hitCount == target.size();
 }
