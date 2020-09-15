@@ -7,7 +7,9 @@ int main()
 {
 	try
 	{
-		PizzaStore::orderPizza("cheese");
+		NYPizzaFactory vFactory;
+		PizzaStore vPizzaStore(&vFactory);
+		vPizzaStore.orderPizza("cheese");
 	}
 	catch (std::exception& rE)
 	{
