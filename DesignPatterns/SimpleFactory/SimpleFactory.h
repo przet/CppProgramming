@@ -58,27 +58,32 @@ struct ChicagoCheesePizza : public IPizza
 
 };
 
-struct PizzaSimpleFactory
+class IPizzaStore
 {
-	virtual std::shared_ptr<IPizza> createPizza(std::string rPizzaType)
+public:
+	virtual std::shared_ptr<IPizza> createPizza(std::string rPizzaType) = 0;
+
+	virtual std::shared_ptr<IPizza> orderPizza(std::string rPizzaType) final
 	{
 		auto vPizza = std::make_shared<IPizza>();
-		
-		if (rPizzaType == "cheese")
-		{
-			vPizza = std::shared_ptr<IPizza>(new CheesePizza);
-		}
-		else
-		{
-			throw std::runtime_error("pizza type not yet supported");
-		}
+
+		vPizza = createPizza(rPizzaType);
+		producePizzaOrder(vPizza);
 
 		return vPizza;
+	}
 
+private:
+	virtual void producePizzaOrder(std::shared_ptr<IPizza> rPizza) final
+	{
+		rPizza->prepare();
+		rPizza->bake();
+		rPizza->cut();
+		rPizza->box();
 	}
 };
 
-struct NYPizzaFactory : public PizzaSimpleFactory
+struct NYPizzaStore : public IPizzaStore
 {
 	virtual std::shared_ptr<IPizza> createPizza(std::string rPizzaType) override
 	{
@@ -96,10 +101,9 @@ struct NYPizzaFactory : public PizzaSimpleFactory
 		return vPizza;
 
 	}
-
 };
 
-struct ChicagoPizzaFactory : public PizzaSimpleFactory
+struct ChicagoPizzaStore : public IPizzaStore
 {
 	virtual std::shared_ptr<IPizza> createPizza(std::string rPizzaType) override
 	{
@@ -120,32 +124,15 @@ struct ChicagoPizzaFactory : public PizzaSimpleFactory
 
 };
 
-class PizzaStore
+namespace
 {
-public:
-	PizzaStore(PizzaSimpleFactory* rPizzaSimpleFactory)
-		:mFactory(rPizzaSimpleFactory)
+	std::shared_ptr<IPizzaStore> pizzaStore(std::string rPizzaStore)
 	{
-
+		if (rPizzaStore == "CHI")
+			return std::shared_ptr<IPizzaStore>(new ChicagoPizzaStore);
+		else if (rPizzaStore == "NY")
+			return std::shared_ptr<IPizzaStore>(new NYPizzaStore);
+		else
+			throw std::runtime_error("No pizza store in city with abbreviation " + rPizzaStore);
 	}
-	std::shared_ptr<IPizza> orderPizza(std::string rPizzaType)
-	{
-		auto vPizza = std::make_shared<IPizza>();
-
-		vPizza = mFactory->createPizza(rPizzaType);
-		producePizzaOrder(vPizza);
-
-		return vPizza;
-	}
-
-private:
-	PizzaSimpleFactory* mFactory;
-	void producePizzaOrder(std::shared_ptr<IPizza> rPizza)
-	{
-		rPizza->prepare();
-		rPizza->bake();
-		rPizza->cut();
-		rPizza->box();
-	}
-
-};
+}
