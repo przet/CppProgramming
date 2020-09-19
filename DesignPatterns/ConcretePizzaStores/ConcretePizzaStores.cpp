@@ -8,11 +8,13 @@ NYPizzaStore::NYPizzaStore()
 
 std::shared_ptr<IPizza> NYPizzaStore::createPizza(std::string rPizzaType)
 {
-	auto vPizza = std::make_shared<IPizza>(rPizzaType);
+	std::shared_ptr<IPizza> vPizza = nullptr;
+	IPizzaStore::mIngredientFactory = PizzaIngredientFactory(new NYPizzaIngredientFactory);
 
 	if (rPizzaType == "cheese")
 	{
-		vPizza = std::shared_ptr<IPizza>(new NYCheesePizza(rPizzaType));
+		vPizza = std::shared_ptr<IPizza>(new CheesePizza(mIngredientFactory));
+		vPizza->setName(this->mStoreTypeName + " style " + rPizzaType + "pizza");
 	}
 	else
 	{
@@ -30,11 +32,13 @@ ChicagoPizzaStore::ChicagoPizzaStore()
 
 std::shared_ptr<IPizza> ChicagoPizzaStore::createPizza(std::string rPizzaType)
 {
-	auto vPizza = std::make_shared<IPizza>(rPizzaType);
+	std::shared_ptr<IPizza> vPizza = nullptr;
+	IPizzaStore::mIngredientFactory = PizzaIngredientFactory(new ChicagoIngredientFactory);
 
 	if (rPizzaType == "cheese")
 	{
-		vPizza = std::shared_ptr<IPizza>(new ChicagoCheesePizza(rPizzaType));
+		vPizza = std::shared_ptr<IPizza>(new CheesePizza(mIngredientFactory));
+		vPizza->setName(this->mStoreTypeName + " style " + rPizzaType + "pizza");
 	}
 	else
 	{
@@ -52,15 +56,19 @@ MixedPizzaStore::MixedPizzaStore()
 
 std::shared_ptr<IPizza> MixedPizzaStore::createPizza(std::string rPizzaType)
 {
-	auto vPizza = std::make_shared<IPizza>(rPizzaType);
+	std::shared_ptr<IPizza> vPizza = nullptr;
 
 	if (rPizzaType == "NY_cheese")
 	{
-		vPizza = std::shared_ptr<IPizza>(new NYCheesePizza(rPizzaType));
+		IPizzaStore::mIngredientFactory = PizzaIngredientFactory(new NYPizzaIngredientFactory);
+		vPizza = std::shared_ptr<IPizza>(new CheesePizza(mIngredientFactory));
+		vPizza->setName(rPizzaType + "pizza from " + this->mStoreTypeName);
 	}
 	else if (rPizzaType == "Chicago_cheese")
 	{
-		vPizza = std::shared_ptr<IPizza>(new ChicagoCheesePizza(rPizzaType));
+        IPizzaStore::mIngredientFactory = PizzaIngredientFactory(new ChicagoIngredientFactory);
+		vPizza = std::shared_ptr<IPizza>(new CheesePizza(mIngredientFactory));
+		vPizza->setName(rPizzaType + "pizza from " + this->mStoreTypeName);
 	}
 	else
 	{

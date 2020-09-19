@@ -1,11 +1,12 @@
 #pragma once
 #include "../PizzaStoreInterface/PizzaStoreInterface.h"
 #include "../ConcretePizzas/ConcretePizzas.h"
+#include "../ConcretePizzaIngredientFactories/ConcretePizzaIngredientFactories.h"
 
 struct NYPizzaStore : public IPizzaStore
 {
-	NYPizzaStore();
-	virtual Pizza createPizza(std::string rPizzaType) override;
+    NYPizzaStore();
+    virtual Pizza createPizza(std::string rPizzaType) override;
 };
 
 struct ChicagoPizzaStore : public IPizzaStore

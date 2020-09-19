@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "PizzaStoreInterface.h"
+#include <stdexcept>
+#include <memory>
 
 IPizzaStore::~IPizzaStore() {}
 
 Pizza IPizzaStore::orderPizza(std::string rPizzaType)
 {
-	auto vPizza = std::make_shared<IPizza>(rPizzaType);
+	std::shared_ptr<IPizza> vPizza = nullptr;
 
 	vPizza = createPizza(rPizzaType);
 	producePizzaOrder(vPizza);
