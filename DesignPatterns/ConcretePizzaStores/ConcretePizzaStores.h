@@ -15,8 +15,3 @@ struct ChicagoPizzaStore : public IPizzaStore
 	virtual Pizza createPizza(std::string rPizzaType) override;
 };
 
-struct MixedPizzaStore : public IPizzaStore
-{
-	MixedPizzaStore();
-	virtual Pizza createPizza(std::string rPizzaType) override;
-};

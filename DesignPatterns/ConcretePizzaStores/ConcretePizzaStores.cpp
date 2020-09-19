@@ -49,32 +49,3 @@ std::shared_ptr<IPizza> ChicagoPizzaStore::createPizza(std::string rPizzaType)
 
 }
 
-MixedPizzaStore::MixedPizzaStore()
-{
-	mStoreTypeName = "MixedPizzaStore";
-}
-
-std::shared_ptr<IPizza> MixedPizzaStore::createPizza(std::string rPizzaType)
-{
-	std::shared_ptr<IPizza> vPizza = nullptr;
-
-	if (rPizzaType == "NY_cheese")
-	{
-		IPizzaStore::mIngredientFactory = PizzaIngredientFactory(new NYPizzaIngredientFactory);
-		vPizza = std::shared_ptr<IPizza>(new CheesePizza(mIngredientFactory));
-		vPizza->setName(rPizzaType + "pizza from " + this->mStoreTypeName);
-	}
-	else if (rPizzaType == "Chicago_cheese")
-	{
-        IPizzaStore::mIngredientFactory = PizzaIngredientFactory(new ChicagoIngredientFactory);
-		vPizza = std::shared_ptr<IPizza>(new CheesePizza(mIngredientFactory));
-		vPizza->setName(rPizzaType + "pizza from " + this->mStoreTypeName);
-	}
-	else
-	{
-		throw std::runtime_error("pizza type not yet supported");
-	}
-
-	return vPizza;
-
-}
