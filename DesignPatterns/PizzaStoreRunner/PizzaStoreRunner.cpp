@@ -8,6 +8,7 @@
 #include <memory>
 #include "../PizzaStoreInterface/PizzaStoreInterface.h"
 #include "../ConcretePizzaStores/ConcretePizzaStores.h"
+#include <type_traits>
 
 namespace
 {
@@ -23,6 +24,11 @@ namespace
 			std::cout << "We are in the NY store " << std::endl;
 			return std::shared_ptr<IPizzaStore>(new NYPizzaStore);
 		}
+		else if (rPizzaStore == "MIXED")
+		{
+			std::cout << "We are in the MIXED store " << std::endl;
+			return std::shared_ptr<IPizzaStore>(new MixedPizzaStore);
+		}
 		else
 		{
 			throw std::runtime_error("No pizza store in city with abbreviation " + rPizzaStore);
@@ -32,9 +38,15 @@ namespace
 
 int main(int argc, char* argv[])
 {
-	if (argc != 2)
+	if (argc < 2)
 	{
-		std::cout << "Supply (only) pizza store name!" << std::endl;
+		std::cout << "Supply (at least) pizza store name" << std::endl;
+		return -1;
+	}
+
+	if (argc > 3)
+	{
+		std::cout << "Supply (at most) pizza store name and type of pizza" << std::endl;
 		return -1;
 	}
 
@@ -49,7 +61,8 @@ int main(int argc, char* argv[])
 	std::vector<std::pair<std::string, std::vector<std::string>>> vStringVec
 	{
 		{"CHI", {"chicago", "CHICAGO", "Chicago", "Chicargo", "chicargo", "CHICARGO", "CHI"}},
-		{"NY", {"NY", "ny", "NEWYORK", "NEW YORK", "new york", "New York", "New Yorke", "NEW YORKE"} }
+		{"NY", {"NY", "ny", "NEWYORK", "NEW YORK", "new york", "New York", "New Yorke", "NEW YORKE"} },
+		{"MIXED", {"MIXED"} }
 	};
 
 	// Go through the string vec key by key. If we have a match for that key,
@@ -75,7 +88,29 @@ int main(int argc, char* argv[])
 	
 	try
 	{
-		vPizzaStore->orderPizza("cheese");
+		if (vPizzaStore->mStoreTypeName != "MixedPizzaStore")
+		{
+            vPizzaStore->orderPizza("cheese");
+		}
+		else
+		{
+			// TODO put this check much earlier!
+			if (argc != 3)
+				throw std::runtime_error("We are in the mixed store, but have not provided what type of pizza");
+            char* vCLArgPtr2 = argv[2];
+            std::string vCLArgStr2;
+            while (*vCLArgPtr2 != '\0')
+            {
+                vCLArgStr2 += *(vCLArgPtr2++);
+            }
+
+			if (vCLArgStr2 == "NY_cheese")
+				vPizzaStore->orderPizza("NY_cheese");
+			else if (vCLArgStr2 == "Chicago_cheese")
+				vPizzaStore->orderPizza("Chicago_cheese");
+			else
+				throw std::runtime_error("Pizza type not supported yet");
+		}
 	}
 	catch (std::exception& rE)
 	{
