@@ -1,5 +1,4 @@
 #include <iostream>
-#include "../SimpleFactory/SimpleFactory.h"
 #include <stdexcept>
 #include <string>
 #include <assert.h>
@@ -7,6 +6,29 @@
 #include <vector>
 #include <utility>
 #include <memory>
+#include "../PizzaStoreInterface/PizzaStoreInterface.h"
+#include "../ConcretePizzaStores/ConcretePizzaStores.h"
+
+namespace
+{
+	std::shared_ptr<IPizzaStore> pizzaStore(std::string rPizzaStore)
+	{
+		if (rPizzaStore == "CHI")
+		{
+			std::cout << "We are in the Chicago store " << std::endl;
+			return std::shared_ptr<IPizzaStore>(new ChicagoPizzaStore);
+		}
+		else if (rPizzaStore == "NY")
+		{
+			std::cout << "We are in the NY store " << std::endl;
+			return std::shared_ptr<IPizzaStore>(new NYPizzaStore);
+		}
+		else
+		{
+			throw std::runtime_error("No pizza store in city with abbreviation " + rPizzaStore);
+		}
+	}
+}
 
 int main(int argc, char* argv[])
 {
