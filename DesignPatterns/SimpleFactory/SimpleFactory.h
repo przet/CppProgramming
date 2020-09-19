@@ -16,6 +16,8 @@ class Pizza
         {
         }
 
+		virtual ~Pizza() {};
+
     public:
         virtual void prepare() final
 		{
@@ -95,6 +97,7 @@ struct ChicagoCheesePizza : public Pizza
 class IPizzaStore
 {
 public:
+	virtual ~IPizzaStore() {}
 	virtual std::shared_ptr<Pizza> createPizza(std::string rPizzaType) = 0;
 
 	virtual std::shared_ptr<Pizza> orderPizza(std::string rPizzaType) final
