@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 	// Allowable input strings 
 	std::vector<std::pair<std::string, std::vector<std::string>>> vStringVec
 	{
-		{"CHI", {"chicago", "CHICAGO", "Chicago", "Chicargo", "chicargo", "CHICARGO"}},
+		{"CHI", {"chicago", "CHICAGO", "Chicago", "Chicargo", "chicargo", "CHICARGO", "CHI"}},
 		{"NY", {"NY", "ny", "NEWYORK", "NEW YORK", "new york", "New York", "New Yorke", "NEW YORKE"} }
 	};
 
