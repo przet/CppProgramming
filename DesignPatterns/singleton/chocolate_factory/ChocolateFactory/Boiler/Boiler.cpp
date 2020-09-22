@@ -5,6 +5,7 @@ ChocolateBoiler::ChocolateBoiler() : mEmpty(true), mBoiled(false)
 {
 
 }
+
 void ChocolateBoiler::fill()
 {
 	if (boilerIsEmpty())
@@ -44,3 +45,4 @@ bool ChocolateBoiler::mixtureIsBoiled()
 {
 	return mBoiled;
 }
+ChocolateBoilerPtr ChocolateBoiler::mUniqueInstance = nullptr;
