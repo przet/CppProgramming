@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Boiler.h"
 
-ChocolateBoiler::ChocolateBoiler() : mEmpty(true), mBoiled(false)
+ChocolateBoiler::ChocolateBoiler(const std::string rId) : mEmpty(true), mBoiled(false), mId(rId)
 {
 
 }

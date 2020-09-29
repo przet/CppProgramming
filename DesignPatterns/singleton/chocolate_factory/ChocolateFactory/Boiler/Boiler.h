@@ -2,6 +2,7 @@
 #ifndef __BOILER__H
 #define __BOILER__H
 #include <memory>
+#include<string>
 
 class ChocolateBoiler;
 using ChocolateBoilerPtr = std::shared_ptr<ChocolateBoiler>;
@@ -9,11 +10,11 @@ using ChocolateBoilerPtr = std::shared_ptr<ChocolateBoiler>;
 class ChocolateBoiler
 {
 	public:
-		static ChocolateBoilerPtr getInstance()
+		static ChocolateBoilerPtr getInstance(const std::string rId)
 		{
 			if (!mUniqueInstance)
 			{
-				mUniqueInstance = ChocolateBoilerPtr(new ChocolateBoiler);
+				mUniqueInstance = ChocolateBoilerPtr(new ChocolateBoiler(rId));
 			}
 			return mUniqueInstance;
 		}
@@ -23,10 +24,11 @@ class ChocolateBoiler
 		void boil();
 		bool boilerIsEmpty();
 		bool mixtureIsBoiled();
+		std::string mId;
 		static ChocolateBoilerPtr mUniqueInstance;
 
 	private:
-		ChocolateBoiler();
+		ChocolateBoiler(const std::string rId = {});
 		bool mEmpty;
 		bool mBoiled;
 
