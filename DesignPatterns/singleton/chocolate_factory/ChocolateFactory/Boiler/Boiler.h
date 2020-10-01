@@ -13,10 +13,13 @@ class ChocolateBoiler
 	public:
 		static ChocolateBoilerPtr getInstance(const std::string rId)
 		{
-			std::lock_guard<std::mutex> vLock(mMutex);
 			if (!mUniqueInstance)
 			{
-				mUniqueInstance = ChocolateBoilerPtr(new ChocolateBoiler(rId));
+				std::lock_guard<std::mutex> vLock(mMutex);
+				if (!mUniqueInstance)
+				{
+					mUniqueInstance = ChocolateBoilerPtr(new ChocolateBoiler(rId));
+				}
 			}
 			return mUniqueInstance;
 		}
