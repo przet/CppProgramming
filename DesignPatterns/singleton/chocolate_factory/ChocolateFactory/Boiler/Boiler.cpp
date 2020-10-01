@@ -46,3 +46,4 @@ bool ChocolateBoiler::mixtureIsBoiled()
 	return mBoiled;
 }
 ChocolateBoilerPtr ChocolateBoiler::mUniqueInstance = nullptr;
+std::mutex ChocolateBoiler::mMutex;

@@ -3,6 +3,7 @@
 #define __BOILER__H
 #include <memory>
 #include<string>
+#include <mutex>
 
 class ChocolateBoiler;
 using ChocolateBoilerPtr = std::shared_ptr<ChocolateBoiler>;
@@ -12,6 +13,7 @@ class ChocolateBoiler
 	public:
 		static ChocolateBoilerPtr getInstance(const std::string rId)
 		{
+			std::lock_guard<std::mutex> vLock(mMutex);
 			if (!mUniqueInstance)
 			{
 				mUniqueInstance = ChocolateBoilerPtr(new ChocolateBoiler(rId));
@@ -31,8 +33,7 @@ class ChocolateBoiler
 		ChocolateBoiler(const std::string rId = {});
 		bool mEmpty;
 		bool mBoiled;
-
-
+		static std::mutex mMutex;
 };
 
 #endif  
