@@ -1,6 +1,6 @@
 #ifndef SHARED_HEADER
 #define SHARED_HEADER
-void sharedFunction()
+inline void sharedFunction()
 {
 }
 
