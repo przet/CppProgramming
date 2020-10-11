@@ -1,6 +1,7 @@
 #ifndef SHARED_HEADER
 #define SHARED_HEADER
-inline void sharedFunction()
+template <class T>
+void sharedFunction()
 {
 }
 
