@@ -2,7 +2,7 @@
 #define HEADER1
 #include "SharedHeaderFile.h"
 
-void function1()
+inline void function1()
 {
     sharedFunction<int>();
 }
