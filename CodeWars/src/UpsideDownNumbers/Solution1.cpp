@@ -46,7 +46,7 @@ int solve(int x, int y)
         }
         auto target{std::size(origDigitStore)};
         auto count{0};
-        while (std::size(origDigitStore))
+        while (true)
         {
             if (origDigitStore.front() != customMap[rotatedDigitStore.top()])
                 break;
@@ -54,10 +54,13 @@ int solve(int x, int y)
             ++count;
             origDigitStore.pop();
             rotatedDigitStore.pop();
+            if (!std::size(origDigitStore))
+            {
+                ++result;
+                break;
+
+            }
         }
-        if (count == target)
-            ++result;
         ++x;
     }
   return result;
-}
