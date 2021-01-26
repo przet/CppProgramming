@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stack>
 #include <unordered_map>
 #include <queue>
@@ -24,8 +23,6 @@ struct CustomMap
 };
 int solve(int x, int y)
 {
-    assert(x >= 0 && y >= 0);
-    assert(x < y);
     auto result{0};
     CustomMap customMap; 
     while (x < y)
@@ -39,7 +36,6 @@ int solve(int x, int y)
             origDigitStore.push(q%10);
             q /= 10;
         } while (q);
-        assert(std::size(origDigitStore) == std::size(rotatedDigitStore));
         if (std::size(origDigitStore) == 1)
         {
             if (origDigitStore.front() == 0 || origDigitStore.front() == 1 || origDigitStore.front() == 8)
@@ -58,11 +54,9 @@ int solve(int x, int y)
             ++count;
             origDigitStore.pop();
             rotatedDigitStore.pop();
-            assert(std::size(origDigitStore) == std::size(rotatedDigitStore));
         }
         if (count == target)
             ++result;
-        
         ++x;
     }
   return result;
