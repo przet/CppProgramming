@@ -1,29 +1,109 @@
+#include <map>
 #include <vector>
+#include <string>
 #include <set>
-#include <algorithm>
+#include <utility>
 
-using VecInt = std::vector<int>;
-using SetInt = std::multiset<int>; 
+using IntType = unsigned long long;
+using String = std::string;
+using VectorOfStrs = std::vector<std::string>;
+using MultiSet = std::multiset<std::pair<IntType, std::string>>;
+using PairIntStr = std::pair<IntType, std::string>;
 
-VecInt commonElements(const VecInt& a, const VecInt& b)
+struct Comparator
 {
-    SetInt a_set(std::begin(a), std::end(a));
-    SetInt b_set(std::begin(b), std::end(b));
-    VecInt vec(std::size(a) + std::size(b));
-    std::vector<int>::iterator it;
-    it = std::set_intersection(std::begin(a_set), std::end(a_set),
-                                std::begin(b_set), std::end(b_set), std::begin(vec));
-    vec.resize(it - std::begin(vec));
-    return vec;
-}
+    bool operator() (const PairIntStr& lhs, const PairIntStr& rhs)
+    {
+        if (lhs.first != rhs.first)
+            return lhs.first < rhs.first;
+        else
+            return lhs.second < rhs.second;
+    }
+};
 
-int common(std::vector<int> a, std::vector<int> b, std::vector<int> c)
+struct WeightSort
 {
+    static VectorOfStrs parseString(const String& input)
+    {
+        VectorOfStrs vVectorOfStrs;
+        String vTempString;
+        for (auto elem : input)
+        {
+            if (elem != ' ')
+                vTempString.push_back(elem);
+            else
+            {
+                vVectorOfStrs.push_back(vTempString);
+                vTempString.clear();
+            }
+        }
+      
+        vVectorOfStrs.push_back(vTempString);
+        vTempString.clear();
+        auto vLastIt = std::prev(std::end(vVectorOfStrs));
+        if (!vLastIt->size())
+            vVectorOfStrs.erase(vLastIt);
+          
+      
+        return vVectorOfStrs;
+    }
   
-    VecInt vCommonElements = commonElements(a, commonElements(b,c));
-    auto sum{0};
-    for (auto elem : vCommonElements)
-        sum += elem;
+    static IntType sumDigits(const String& input)
+    {
+        try
+        {
+            return sumDigits(std::stoull(input));
+        }
+        catch (std::exception& e)
+        {
+            std::cout << "input is : " << input << std::endl;
+            std::cout << e.what() << std::endl;
+            throw e;
+
+        }
+    }
+  
+    static IntType sumDigits(IntType input)
+    {
+        auto q{input};
+        auto sum{0};
+        do
+        {
+            sum += q % 10;
+            q /= 10;
+        } while (q);
+      
+        return sum;
+    }
     
-    return sum;
-}
+  
+  static String orderWeight(const String& input)
+    {
+        std::cout << "-------------Start Call------------" << std::endl;
+        std::cout << "Calling orderWeight. Input is: " << input << std::endl;
+        // Assume whitespaces in input do not need to be preserved in output
+        if (!input.size())
+            return "";
+        
+        
+        // Parse input into standalone strings
+        auto vStrList = parseString(input);
+        
+        MultiSet vMSet;
+        for (auto elem : vStrList)
+        {
+            vMSet.insert({sumDigits(elem), elem});
+        }
+    
+      String vResult;
+      for (const auto& elem : vMSet)
+      {
+          vResult.append(elem.second);
+          vResult.append(" ");
+      }
+      vResult.erase(std::prev(std::end(vResult)));
+    
+    std::cout << "-------------End Call------------" << std::endl;
+    return vResult;
+    }
+};
