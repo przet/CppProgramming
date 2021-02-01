@@ -43,24 +43,12 @@ struct WeightSort
         auto vLastIt = std::prev(std::end(vVectorOfStrs));
         if (!vLastIt->size())
             vVectorOfStrs.erase(vLastIt);
-          
-      
         return vVectorOfStrs;
     }
   
     static IntType sumDigits(const String& input)
     {
-        try
-        {
-            return sumDigits(std::stoull(input));
-        }
-        catch (std::exception& e)
-        {
-            std::cout << "input is : " << input << std::endl;
-            std::cout << e.what() << std::endl;
-            throw e;
-
-        }
+        return sumDigits(std::stoull(input));
     }
   
     static IntType sumDigits(IntType input)
@@ -75,18 +63,11 @@ struct WeightSort
       
         return sum;
     }
-    
   
   static String orderWeight(const String& input)
     {
-        std::cout << "-------------Start Call------------" << std::endl;
-        std::cout << "Calling orderWeight. Input is: " << input << std::endl;
-        // Assume whitespaces in input do not need to be preserved in output
         if (!input.size())
             return "";
-        
-        
-        // Parse input into standalone strings
         auto vStrList = parseString(input);
         
         MultiSet vMSet;
@@ -95,15 +76,15 @@ struct WeightSort
             vMSet.insert({sumDigits(elem), elem});
         }
     
-      String vResult;
-      for (const auto& elem : vMSet)
-      {
-          vResult.append(elem.second);
-          vResult.append(" ");
-      }
-      vResult.erase(std::prev(std::end(vResult)));
-    
-    std::cout << "-------------End Call------------" << std::endl;
-    return vResult;
+        String vResult;
+        for (const auto& elem : vMSet)
+        {
+            vResult.append(elem.second);
+            vResult.append(" ");
+        }
+        vResult.erase(std::prev(std::end(vResult)));
+
+        return vResult;
     }
 };
+
