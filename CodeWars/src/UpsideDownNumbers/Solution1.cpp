@@ -65,13 +65,11 @@ int solve(int x, int y)
             continue;
         }
         DigitStore vDigitStore(x);
-        auto count{ 0 };
         while (true)
         {
             if (vDigitStore.nextOrigDigit() != vRotationMap[vDigitStore.nextReverseDigit()])
                 break;
 
-            ++count;
             vDigitStore.pop();
             if (vDigitStore.empty())
             {
