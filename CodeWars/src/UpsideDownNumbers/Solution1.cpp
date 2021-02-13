@@ -3,7 +3,7 @@
 #include <queue>
 struct CustomMap
 {
-    std::unordered_map<int,int> hashMap
+    std::unordered_map<int, int> hashMap
     {
         {0, 0},
         {1, 1},
@@ -11,12 +11,12 @@ struct CustomMap
         {8, 8},
         {9, 6}
     };
-  
+
     int operator [](int digit)
     {
-        if (digit == 0 || digit == 1 || digit == 6 || digit == 8 || digit == 9)
+        if (hashMap.find(digit) != std::end(hashMap))
             return hashMap[digit];
-        else 
+        else
             return -1;
     }
 
@@ -24,10 +24,10 @@ struct CustomMap
 void storeDigits(int x, std::queue<int>& queue, std::stack<int>& stack)
 {
     int q = x;
-    do 
+    do
     {
-        stack.push(q%10);
-        queue.push(q%10);
+        stack.push(q % 10);
+        queue.push(q % 10);
         q /= 10;
     } while (q);
 }
@@ -61,7 +61,6 @@ int solve(int x, int y)
             {
                 ++result;
                 break;
-
             }
         }
         ++x;
