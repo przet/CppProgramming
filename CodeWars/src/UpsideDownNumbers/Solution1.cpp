@@ -44,7 +44,6 @@ int solve(int x, int y)
             ++x;
             continue;
         }
-        auto target{std::size(origDigitStore)};
         auto count{0};
         while (true)
         {
