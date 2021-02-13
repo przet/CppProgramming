@@ -21,6 +21,17 @@ struct CustomMap
     }
 
 };
+void storeDigits(int x, std::queue<int>& queue, std::stack<int>& stack)
+{
+    int q = x;
+    do 
+    {
+        stack.push(q%10);
+        queue.push(q%10);
+        q /= 10;
+    } while (q);
+}
+
 int solve(int x, int y)
 {
     auto result{0};
@@ -29,13 +40,7 @@ int solve(int x, int y)
     {
         std::queue<int> origDigitStore;
         std::stack<int> rotatedDigitStore;
-        int q = x;
-        do 
-        {
-            rotatedDigitStore.push(q%10);
-            origDigitStore.push(q%10);
-            q /= 10;
-        } while (q);
+        storeDigits(x, origDigitStore, rotatedDigitStore);
         if (std::size(origDigitStore) == 1)
         {
             if (origDigitStore.front() == 0 || origDigitStore.front() == 1 || origDigitStore.front() == 8)
