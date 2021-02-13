@@ -14,10 +14,7 @@ struct RotationMap
 
     int operator [](int digit)
     {
-        if (hashMap.find(digit) != std::end(hashMap))
-            return hashMap[digit];
-        else
-            return -1;
+        return hashMap.find(digit) != std::end(hashMap) ? hashMap[digit] : -1;
     }
 
 };
