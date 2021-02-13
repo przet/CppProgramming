@@ -2,11 +2,24 @@
 #include <vector>
 #include <string>
 #include <set>
+#include <utility>
 
+using IntType = unsigned long long;
 using String = std::string;
 using VectorOfStrs = std::vector<std::string>;
-using MultiMap = std::multimap<int, std::string>;
-using MultiSet = std::multiset<std::string>;
+using MultiSet = std::multiset<std::pair<IntType, std::string>>;
+using PairIntStr = std::pair<IntType, std::string>;
+
+struct Comparator
+{
+    bool operator() (const PairIntStr& lhs, const PairIntStr& rhs)
+    {
+        if (lhs.first != rhs.first)
+            return lhs.first < rhs.first;
+        else
+            return lhs.second < rhs.second;
+    }
+};
 
 struct WeightSort
 {
@@ -27,16 +40,18 @@ struct WeightSort
       
         vVectorOfStrs.push_back(vTempString);
         vTempString.clear();
-        
+        auto vLastIt = std::prev(std::end(vVectorOfStrs));
+        if (!vLastIt->size())
+            vVectorOfStrs.erase(vLastIt);
         return vVectorOfStrs;
     }
   
-    static int sumDigits(const String& input)
+    static IntType sumDigits(const String& input)
     {
-        return sumDigits(std::stoi(input));
+        return sumDigits(std::stoull(input));
     }
   
-    static int sumDigits(int input)
+    static IntType sumDigits(IntType input)
     {
         auto q{input};
         auto sum{0};
@@ -48,54 +63,28 @@ struct WeightSort
       
         return sum;
     }
-    
   
   static String orderWeight(const String& input)
     {
-        // Assume whitespaces in input do not need to be preserved in output
-        
-        // Parse input into standalone strings
+        if (!input.size())
+            return "";
         auto vStrList = parseString(input);
         
-        // Store string as int keyed on the sum of its digits - this will be sorted on the key also
-        MultiMap vMMap;
+        MultiSet vMSet;
         for (auto elem : vStrList)
         {
-            vMMap.insert({sumDigits(elem), elem});
+            vMSet.insert({sumDigits(elem), elem});
         }
     
-        // Insert the values for each key into the result string, inserting a space in between each.
-      auto vIt = std::cbegin(vMMap);
-      const auto vEndIt = std::cend(vMMap);
-      String vResult;
-      while (vIt != vEndIt)
-      {
-          if (vMMap.count(vIt->first) > 1)
-          {
-              auto vRange = vMMap.equal_range(vIt->first);
-              MultiSet vMMSet;
-              for (auto it = vRange.first; it != vRange.second; ++it)
-              {
-                  vMMSet.insert(it->second);
-              }
-              for (const auto& elem : vMMSet)
-              {
-                  vResult.append(elem);
-                  vResult.append(" ");
-              }
-              vIt = std::next(vRange.second);
-          }
-          else
-          {
-              for (const auto& elem : vMMap)
-              {
-                  vResult.append(elem.second);
-                  vResult.append(" ");
-              }
-              ++vIt;
-          }
-        
-      }
-    return vResult;
+        String vResult;
+        for (const auto& elem : vMSet)
+        {
+            vResult.append(elem.second);
+            vResult.append(" ");
+        }
+        vResult.erase(std::prev(std::end(vResult)));
+
+        return vResult;
     }
 };
+
