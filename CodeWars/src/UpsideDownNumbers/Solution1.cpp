@@ -34,27 +34,26 @@ void storeDigits(int x, std::queue<int>& queue, std::stack<int>& stack)
 
 int solve(int x, int y)
 {
-    auto result{0};
-    CustomMap customMap; 
+    auto result{ 0 };
+    CustomMap customMap;
     while (x < y)
     {
-        std::queue<int> origDigitStore;
-        std::stack<int> rotatedDigitStore;
-        storeDigits(x, origDigitStore, rotatedDigitStore);
-        if (std::size(origDigitStore) == 1)
+        if (x / 10 == 0)
         {
-            if (origDigitStore.front() == 0 || origDigitStore.front() == 1 || origDigitStore.front() == 8)
+            if (x == 0 || x == 1 || x == 8)
                 ++result;
-          
             ++x;
             continue;
         }
-        auto count{0};
+        std::queue<int> origDigitStore;
+        std::stack<int> rotatedDigitStore;
+        storeDigits(x, origDigitStore, rotatedDigitStore);
+        auto count{ 0 };
         while (true)
         {
             if (origDigitStore.front() != customMap[rotatedDigitStore.top()])
                 break;
-          
+
             ++count;
             origDigitStore.pop();
             rotatedDigitStore.pop();
@@ -67,4 +66,5 @@ int solve(int x, int y)
         }
         ++x;
     }
-  return result;
+    return result;
+}
