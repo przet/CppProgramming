@@ -18,16 +18,53 @@ struct RotationMap
     }
 
 };
-void storeDigits(int x, std::queue<int>& queue, std::stack<int>& stack)
+
+struct DigitStore
 {
-    int q = x;
-    do
+    DigitStore(int x)
     {
-        stack.push(q % 10);
-        queue.push(q % 10);
-        q /= 10;
-    } while (q);
-}
+        int q = x;
+        do
+        {
+            origDigitStore.push(q % 10);
+            reverseDigitStore.push(q % 10);
+            q /= 10;
+        } while (q);
+
+        if (std::size(origDigitStore) != std::size(reverseDigitStore))
+            throw std::logic_error("Both internal digits store are to be the same size");
+
+    }
+    int nextOrigDigit()
+    {
+        return origDigitStore.front();
+    }
+
+    int nextReverseDigit()
+    {
+        return reverseDigitStore.top();
+    }
+
+    void pop()
+    {
+        origDigitStore.pop();
+        reverseDigitStore.pop();
+    }
+
+    int size()
+    {
+        return origDigitStore.size();
+    }
+
+    bool empty()
+    {
+        return !size();
+    }
+
+    std::queue<int> origDigitStore;
+    std::stack<int> reverseDigitStore;
+
+};
 
 bool singleDigit(int x)
 {
@@ -48,19 +85,16 @@ int solve(int x, int y)
             ++x;
             continue;
         }
-        std::queue<int> origDigitStore;
-        std::stack<int> reverseDigitStore;
-        storeDigits(x, origDigitStore, reverseDigitStore);
+        DigitStore vDigitStore(x);
         auto count{ 0 };
         while (true)
         {
-            if (origDigitStore.front() != vRotationMap[reverseDigitStore.top()])
+            if (vDigitStore.nextOrigDigit() != vRotationMap[vDigitStore.nextReverseDigit()])
                 break;
 
             ++count;
-            origDigitStore.pop();
-            reverseDigitStore.pop();
-            if (!std::size(origDigitStore))
+            vDigitStore.pop();
+            if (vDigitStore.empty())
             {
                 ++result;
                 break;
