@@ -35,42 +35,21 @@ struct DigitStore
             throw std::logic_error("Both internal digits store are to be the same size");
 
     }
-    int nextOrigDigit()
-    {
-        return origDigitStore.front();
-    }
+    int nextOrigDigit() { return origDigitStore.front(); }
 
-    int nextReverseDigit()
-    {
-        return reverseDigitStore.top();
-    }
+    int nextReverseDigit() { return reverseDigitStore.top(); }
 
-    void pop()
-    {
-        origDigitStore.pop();
-        reverseDigitStore.pop();
-    }
+    void pop() { origDigitStore.pop(); reverseDigitStore.pop(); }
 
-    int size()
-    {
-        return origDigitStore.size();
-    }
+    int size() { return origDigitStore.size(); }
 
-    bool empty()
-    {
-        return !size();
-    }
+    bool empty() { return !size(); }
 
     std::queue<int> origDigitStore;
     std::stack<int> reverseDigitStore;
-
 };
 
-bool singleDigit(int x)
-{
-    return !x / 10;
-}
-
+bool singleDigit(int x) { return !x / 10; }
 
 int solve(int x, int y)
 {
