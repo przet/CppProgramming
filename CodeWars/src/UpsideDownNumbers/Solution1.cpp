@@ -29,13 +29,19 @@ void storeDigits(int x, std::queue<int>& queue, std::stack<int>& stack)
     } while (q);
 }
 
+bool singleDigit(int x)
+{
+    return !x / 10;
+}
+
+
 int solve(int x, int y)
 {
     auto result{ 0 };
     RotationMap vRotationMap;
     while (x < y)
     {
-        if (x / 10 == 0)
+        if (singleDigit(x))
         {
             if (x == 0 || x == 1 || x == 8)
                 ++result;
