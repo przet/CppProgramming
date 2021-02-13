@@ -1,7 +1,7 @@
 #include <stack>
 #include <unordered_map>
 #include <queue>
-struct CustomMap
+struct RotationMap 
 {
     std::unordered_map<int, int> hashMap
     {
@@ -35,7 +35,7 @@ void storeDigits(int x, std::queue<int>& queue, std::stack<int>& stack)
 int solve(int x, int y)
 {
     auto result{ 0 };
-    CustomMap customMap;
+    RotationMap vRotationMap;
     while (x < y)
     {
         if (x / 10 == 0)
@@ -46,17 +46,17 @@ int solve(int x, int y)
             continue;
         }
         std::queue<int> origDigitStore;
-        std::stack<int> rotatedDigitStore;
-        storeDigits(x, origDigitStore, rotatedDigitStore);
+        std::stack<int> reverseDigitStore;
+        storeDigits(x, origDigitStore, reverseDigitStore);
         auto count{ 0 };
         while (true)
         {
-            if (origDigitStore.front() != customMap[rotatedDigitStore.top()])
+            if (origDigitStore.front() != vRotationMap[reverseDigitStore.top()])
                 break;
 
             ++count;
             origDigitStore.pop();
-            rotatedDigitStore.pop();
+            reverseDigitStore.pop();
             if (!std::size(origDigitStore))
             {
                 ++result;
