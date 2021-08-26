@@ -14,7 +14,7 @@ long long int groupSize(long long int S,long long int D)
         T = D;
       
     }
-    return ceil(S - 1 + ( (-1 + sqrt(1 + 8*T))/2 - (S-1)));
+    return ceil((-1 + sqrt(1 + 8*T))/2);
     
     
 }
