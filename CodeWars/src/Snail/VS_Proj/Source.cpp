@@ -40,19 +40,21 @@ void snail(
 }
 std::vector<int> snail(const std::vector<std::vector<int>> &snail_map)
 {
-    if (snail_map.size()==1 && !snail_map[0].size())
-        return std::vector<int>{};
-    if (snail_map.size()==1)
-        return std::vector<int>{snail_map[0][0]};
+    const size_t mapSize = snail_map.size();
     std::vector<int> result;
+
+    if (mapSize == 1)
+        return !snail_map[0].size() ?
+        result : std::vector<int>{ snail_map[0][0] };
+    
     snail(
         snail_map,
         result,
         0,
-        snail_map.size() - 1,
-        snail_map.size() - 1,
+        mapSize - 1,
+        mapSize - 1,
         0,
-        snail_map.size());
+        mapSize);
 
     return result;
 }
