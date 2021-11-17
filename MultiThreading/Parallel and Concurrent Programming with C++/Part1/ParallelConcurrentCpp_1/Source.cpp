@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <thread>
 #include <assert.h>
-
+#include <functional>
 void CPU_Waster(int* pid, std::thread::id* tid)
 {
     
@@ -9,6 +9,16 @@ void CPU_Waster(int* pid, std::thread::id* tid)
     printf("CPU Waster Thread ID: %d\n", std::this_thread::get_id());
     *pid = _getpid();
     *tid = std::this_thread::get_id();
+
+}
+
+void CPU_Waster()
+{
+    
+    printf("CPU Waster Process ID: %d\n", _getpid());
+    printf("CPU Waster Thread ID: %d\n", std::this_thread::get_id());
+
+    while (1);
 }
 
 int main()
@@ -24,7 +34,15 @@ int main()
 
     assert(cpu_waster_pid == main_process_pid);
     assert(cpu_waster_tid == main_tid);
-    
+
+    void (*CPU_WasterPtr)() = &CPU_Waster;
+    std::thread thread1(CPU_WasterPtr);
+    std::thread thread2(CPU_WasterPtr);
+
+    while (1)
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+   
+
     
     return 0;
 }
